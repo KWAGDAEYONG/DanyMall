@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>header</title>
+</head>
+<body>
+<div class="header">
+    {{^isLogin}}
+    <span><a href="/login"> 로그인</a></span>
+    <span><a href="/signup">회원가입</a></span>
+    {{/isLogin}}
+
+    {{#isLogin}}
+    <span>안녕하세요 {{name}}님</span>
+    <span><a href="/cart">내 카트</a></span>
+    <span><a href="/update/{{id}}">개인정보수정</a></span>
+    <span><a href="/logout">로그아웃</a></span>
+
+    {{/isLogin}}
+    <span><a href="/qna">Q&A</a></span>
+</div>
+</body>
+</html>

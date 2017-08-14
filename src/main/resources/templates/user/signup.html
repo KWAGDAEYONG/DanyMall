@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>signup</title>
+</head>
+<body>
+{{> /include/header }}
+    <form action="/signupProcess" method="post">
+        아이디:<input type="text" name="userId"> <br><br>
+        비밀번호:<input type="password" name="password"><br><br>
+        이름:<input type="text" name = "name"><br><br>
+        이메일:<input type="email" name="email">	<br><br>
+        <input type="submit" value="확인">
+    </form>
+</body>
+</html>
