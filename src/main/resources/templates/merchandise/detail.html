@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <title>detail</title>
+</head>
+<body>
+{{> /include/header }}
+
+{{#merchandise}}
+<div class="merIntro">
+    <div class="merImgDetail">
+        <img src={{{img}}} style="width: 100%; max-width: 300px; vertical-align: top;">
+    </div>
+    <div class="merInfoDetail">
+        상품명: {{name}}<br>
+        설명: {{detail}}<br>
+        가격: {{price}}<br>
+    </div>
+    <div class="merLongDetail">
+        이 제품은 짱좋아요
+    </div>
+    <div class="review">
+        리뷰가 들어갈거에요
+    </div>
+</div>
+{{/merchandise}}
+</body>
+</html>

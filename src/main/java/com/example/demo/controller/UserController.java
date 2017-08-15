@@ -17,9 +17,6 @@ public class UserController {
     @Autowired
     UserApi userApi;
 
-    @Autowired
-    UserRepository userRepository;
-
     @PostMapping("/login")
     public String loginProcess(String userId, String password, HttpSession httpSession, Model model){
         String result = userApi.login(userId, password, httpSession);

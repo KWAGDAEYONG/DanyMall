@@ -11,7 +11,7 @@
         <a href="/"> <img src="../img/logo.PNG" style="width: 100%; max-width: 400px; vertical-align: middle;"></a>
     </div>
     <div class="nav">
-        <ul>
+        <ul class="nav_list">
             <a href="/goods"> <li class="main_nav_attrubute">남자옷</li></a>
             <a href="/goods"><li class="main_nav_attrubute">여자옷</li></a>
             <a href="/goods"><li class="main_nav_attrubute">애기옷</li></a>
@@ -19,6 +19,22 @@
     </div>
     <div class="slide">
 
+    </div>
+
+    <div class="merList">
+        {{#merchandise}}
+
+        <div class="merAttribute">
+            <div class="merImg">
+                <a href="/detail/{{id}}"> <img src={{{img}}} style="width: 100%; max-width: 300px; vertical-align: top;"></a>
+            </div>
+            <div class="merInfo">
+                {{name}}<br>
+                {{detail}}<br>
+                {{price}}<br>
+            </div>
+        </div>
+        {{/merchandise}}
     </div>
 </body>
 </html>
