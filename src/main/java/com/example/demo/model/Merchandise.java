@@ -1,13 +1,14 @@
 package com.example.demo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Merchandise {
-    @Id
 
+    @Id
     private Long id;
     private String name;
     private String number;
@@ -19,7 +20,19 @@ public class Merchandise {
     private String weather;
     private String category;
     private String img;
+    private String color;
+    private String size;
+    @ManyToOne
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_merchandise_cart"))
+    private Cart cart;
+    @Transient
+    private List<String> colorList = new ArrayList<String>();
+    @Transient
+    private List<String> sizeList = new ArrayList<String>();
 
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
 
     public void setId(Long id) {
         this.id = id;
@@ -64,4 +77,32 @@ public class Merchandise {
     public void setImg(String img) {
         this.img = img;
     }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+
+
+    public void setColorList() {
+        this.colorList.clear();
+        String colors[] = this.color.split(",");
+        for(String c:colors){
+            this.colorList.add(c);
+        }
+    }
+
+    public void setSizeList() {
+        this.sizeList.clear();
+        String sizes[] = this.size.split(",");
+        for(String s:sizes){
+            this.sizeList.add(s);
+        }
+    }
+
+
 }

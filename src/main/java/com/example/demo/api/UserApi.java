@@ -1,6 +1,9 @@
 package com.example.demo.api;
 
+import com.example.demo.model.Cart;
+import com.example.demo.model.Merchandise;
 import com.example.demo.model.User;
+import com.example.demo.repository.CartRepository;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +16,12 @@ public class UserApi {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    CartRepository cartRepository;
+
     public void signUp(User user){
+        Cart cart = new Cart();
+        user.setCart(cart);
         userRepository.save(user);
     }
 
@@ -41,6 +49,7 @@ public class UserApi {
     public void logout(HttpSession httpSession){
         httpSession.removeAttribute("loginUser");
     }
+
 
 
 }

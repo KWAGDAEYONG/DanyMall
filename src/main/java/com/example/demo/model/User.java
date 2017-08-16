@@ -1,9 +1,10 @@
 package com.example.demo.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import org.hibernate.Hibernate;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User {
@@ -18,6 +19,10 @@ public class User {
     private String name;
     @Column(name = "email")
     private String email;
+
+    @OneToOne(cascade={CascadeType.ALL})
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_user_cart"))
+    private Cart cart;
 
     public void setId(Long id) {
         this.id = id;
@@ -39,12 +44,22 @@ public class User {
         this.email = email;
     }
 
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
     public boolean isSamePassword(User user, String password){
         if(!user.password.equals(password)){
             return false;
         }
         return true;
     }
+
+
 
     @Override
     public String toString() {
