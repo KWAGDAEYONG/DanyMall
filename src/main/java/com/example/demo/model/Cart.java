@@ -10,20 +10,24 @@ public class Cart {
     private Long id;
 
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy="cart")
-    private List<Merchandise> merchandise;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_cart_item"))
+    private List<Item> item;
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public void setMerchandise(List<Merchandise> merchandise) {
-        this.merchandise = merchandise;
+    public void setItem(List<Item> item) {
+        this.item = item;
     }
 
+    public void addItem(Item item){
+        this.item.clear();
+        this.item.add(item);
+    }
 
-
-    public void addMerchandise(Merchandise merchandise){
-        this.merchandise.add(merchandise);
+    public List<Item> getItem() {
+        return item;
     }
 }

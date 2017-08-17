@@ -1,18 +1,22 @@
 package com.example.demo.controller;
 
+import com.example.demo.api.CartApi;
 import com.example.demo.api.ItemApi;
 import com.example.demo.api.MerchandiseApi;
 import com.example.demo.api.UserApi;
+import com.example.demo.model.Item;
+import com.example.demo.model.Merchandise;
 import com.example.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpSession;
 
 @Controller
-public class HomeController {
+public class ItemController {
 
     @Autowired
     ItemApi itemApi;
@@ -20,18 +24,17 @@ public class HomeController {
     @Autowired
     UserApi userApi;
 
-    @GetMapping("/")
-    public String home(HttpSession httpSession, Model model){
+    @GetMapping("/detail/{id}")
+    public String detail(@PathVariable Long id, Model model, HttpSession httpSession){
+        Item item = itemApi.findOne(id);
+        model.addAttribute("item",item);
+
         userApi.setModelFromLoginUserSession(httpSession,model);
-        model.addAttribute("item", itemApi.findAll());
-        return "/index";
+
+        item.setColorList();
+        item.setSizeList();
+        return "/merchandise/detail";
     }
-    @GetMapping("/login")
-    public String login(){
-        return "/user/login";
-    }
-    @GetMapping("/signup")
-    public String signUp(){
-        return "/user/signup";
-    }
+
+
 }

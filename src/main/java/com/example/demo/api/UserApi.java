@@ -7,6 +7,7 @@ import com.example.demo.repository.CartRepository;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpSession;
 
@@ -50,6 +51,14 @@ public class UserApi {
         httpSession.removeAttribute("loginUser");
     }
 
+    public void setModelFromLoginUserSession(HttpSession httpSession, Model model){
+        if(httpSession.getAttribute("loginUser")!=null) {
+            model.addAttribute("isLogin", (User)httpSession.getAttribute("loginUser"));
+        }
+    }
 
+    public User findOne(Long id){
+        return userRepository.findOne(id);
+    }
 
 }
