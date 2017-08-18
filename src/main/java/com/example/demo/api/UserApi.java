@@ -1,13 +1,13 @@
 package com.example.demo.api;
 
 import com.example.demo.model.Cart;
-import com.example.demo.model.Merchandise;
 import com.example.demo.model.User;
 import com.example.demo.repository.CartRepository;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.staticUtility.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
+
 
 import javax.servlet.http.HttpSession;
 
@@ -26,6 +26,17 @@ public class UserApi {
         userRepository.save(user);
     }
 
+    public boolean modify(Long id, User user, HttpSession httpSession){
+
+        User dbUser = userRepository.findOne(id);
+        if(!SessionUtil.matchLoginUser(httpSession,dbUser)){
+            return false;
+        }
+        dbUser.update(user);
+        userRepository.save(user);
+        return true;
+    }
+
     public String login(String userId, String password, HttpSession httpSession){
         String result = "";
         User dbUser = userRepository.findByUserId(userId);
@@ -34,12 +45,11 @@ public class UserApi {
             return result;
         }
 
-        if(!dbUser.isSamePassword(dbUser,password)){
+        if(!dbUser.isSamePassword(password)){
             result = "비밀번호가 틀립니다";
             return result;
         }
-
-        if(httpSession.getAttribute("loginUser")!=null){
+        if(SessionUtil.isLogin(httpSession)){
             httpSession.removeAttribute("loginUser");
         }
         httpSession.setAttribute("loginUser",dbUser);
@@ -47,18 +57,17 @@ public class UserApi {
         return result;
     }
 
+
     public void logout(HttpSession httpSession){
         httpSession.removeAttribute("loginUser");
     }
 
-    public void setModelFromLoginUserSession(HttpSession httpSession, Model model){
-        if(httpSession.getAttribute("loginUser")!=null) {
-            model.addAttribute("isLogin", (User)httpSession.getAttribute("loginUser"));
-        }
-    }
 
     public User findOne(Long id){
         return userRepository.findOne(id);
     }
 
+    public User findByUserId(String userId){
+        return userRepository.findByUserId(userId);
+    }
 }

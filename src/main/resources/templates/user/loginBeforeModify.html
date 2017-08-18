@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../css/main.css">
-    <title>login</title>
+    <title>loginBeforeModify</title>
 </head>
 <body>
 {{> /include/header }}
-<form action="/login" method="post">
+<form action="/modifyUserInfo" method="post">
     아이디:<input type="text" name="userId"> <br><br>
     비밀번호:<input type="password" name="password"><br><br>
     <input type="submit" value="확인">
 
-    {{#loginFail}}
-        {{loginFail}}
-    {{/loginFail}}
+    {{#loginBeforeModifyFail}}
+    {{loginBeforeModifyFail}}
+    {{/loginBeforeModifyFail}}
 </form>
 </body>
 </html>

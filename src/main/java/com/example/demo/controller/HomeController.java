@@ -1,15 +1,17 @@
 package com.example.demo.controller;
 
-import com.example.demo.api.ItemApi;
-import com.example.demo.api.MerchandiseApi;
-import com.example.demo.api.UserApi;
+import com.example.demo.api.*;
+import com.example.demo.model.Category;
+import com.example.demo.model.Item;
 import com.example.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class HomeController {
@@ -20,18 +22,21 @@ public class HomeController {
     @Autowired
     UserApi userApi;
 
+    @Autowired
+    CommonApi commonApi;
+
     @GetMapping("/")
     public String home(HttpSession httpSession, Model model){
-        userApi.setModelFromLoginUserSession(httpSession,model);
+        commonApi.setCommonModel(httpSession,model);
         model.addAttribute("item", itemApi.findAll());
         return "/index";
     }
-    @GetMapping("/login")
-    public String login(){
-        return "/user/login";
+
+    @GetMapping("/{id}")
+    public String category(@PathVariable Long id, Model model, HttpSession httpSession){
+        commonApi.setCommonModel(httpSession, model);
+        model.addAttribute("categoryItem",itemApi.getItemsByCategory(id));
+        return "/index";
     }
-    @GetMapping("/signup")
-    public String signUp(){
-        return "/user/signup";
-    }
+
 }

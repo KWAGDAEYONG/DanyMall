@@ -1,12 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.api.CartApi;
-import com.example.demo.api.ItemApi;
-import com.example.demo.api.MerchandiseApi;
-import com.example.demo.api.UserApi;
-import com.example.demo.model.Item;
-import com.example.demo.model.Merchandise;
-import com.example.demo.model.User;
+import com.example.demo.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,19 +16,12 @@ public class ItemController {
     ItemApi itemApi;
 
     @Autowired
-    UserApi userApi;
+    CommonApi commonApi;
 
     @GetMapping("/detail/{id}")
     public String detail(@PathVariable Long id, Model model, HttpSession httpSession){
-        Item item = itemApi.findOne(id);
-        model.addAttribute("item",item);
-
-        userApi.setModelFromLoginUserSession(httpSession,model);
-
-        item.setColorList();
-        item.setSizeList();
+        model.addAttribute("item",itemApi.getDetail(id));
+        commonApi.setCommonModel(httpSession,model);
         return "/merchandise/detail";
     }
-
-
 }

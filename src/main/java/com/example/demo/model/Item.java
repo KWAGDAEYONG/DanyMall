@@ -26,10 +26,14 @@ public class Item {
     private int price;
     private Date release;
     private String detail;
-    private String gender;
     private String style;
+    private String gender;
     private String weather;
-    private String category;
+
+
+    @ManyToOne
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_item_category"))
+    private Category category;
     private String img;
 
 
@@ -58,4 +62,7 @@ public class Item {
         this.cart.add(cart);
     }
 
+    public Category getCategory() {
+        return category;
+    }
 }

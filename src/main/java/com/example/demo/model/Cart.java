@@ -14,6 +14,9 @@ public class Cart {
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_cart_item"))
     private List<Item> item;
 
+    @OneToOne(mappedBy = "cart")
+    private User user;
+
     public void setId(Long id) {
         this.id = id;
     }

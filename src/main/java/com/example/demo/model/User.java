@@ -52,11 +52,30 @@ public class User {
         return cart;
     }
 
-    public boolean isSamePassword(User user, String password){
-        if(!user.password.equals(password)){
+    public Long getId() {
+        return id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public boolean isSamePassword(String password){
+        if(!this.password.equals(password)){
             return false;
         }
         return true;
+    }
+
+    public void update(User user){
+        this.userId = user.userId;
+        this.password = user.password;
+        this.name = user.name;
+        this.email = user.email;
     }
 
 

@@ -14,11 +14,24 @@
     {{#isLogin}}
     <span>안녕하세요 {{name}}님</span>
     <span><a href="/myCart/{{id}}">내 카트</a></span>
-    <span><a href="/update/{{id}}">개인정보수정</a></span>
+    <span><a href="/loginBeforeModify">개인정보수정</a></span>
     <span><a href="/logout">로그아웃</a></span>
 
     {{/isLogin}}
     <span><a href="/qna">Q&A</a></span>
+
+    <div class="logo">
+        <a href="/"> <img src="../img/logo.PNG" style="width: 100%; max-width: 400px; vertical-align: middle;"></a>
+    </div>
+
+    <div class="nav">
+        <ul class="nav_list">
+            {{#category}}
+            <a href="/{{{id}}}"><li class="main_nav_attrubute">{{part}}</li></a>
+            {{/category}}
+        </ul>
+    </div>
+
 </div>
 </body>
 </html>

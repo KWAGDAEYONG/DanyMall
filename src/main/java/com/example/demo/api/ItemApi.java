@@ -1,8 +1,8 @@
 package com.example.demo.api;
 
-import com.example.demo.model.Cart;
 import com.example.demo.model.Item;
 import com.example.demo.repository.CartRepository;
+import com.example.demo.repository.CategoryRepository;
 import com.example.demo.repository.ItempRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,12 +18,26 @@ public class ItemApi {
     @Autowired
     CartRepository cartRepository;
 
+    @Autowired
+    CategoryRepository categoryRepository;
+
     public List<Item> findAll(){
         return itempRepository.findAll();
     }
 
     public Item findOne(Long id){
         return itempRepository.findOne(id);
+    }
+
+    public Item getDetail(Long id){
+        Item item = itempRepository.findOne(id);
+        item.setColorList();
+        item.setSizeList();
+        return item;
+    }
+
+    public List<Item> getItemsByCategory(Long id){
+        return itempRepository.findByCategory(categoryRepository.findOne(id));
     }
 
 
