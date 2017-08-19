@@ -17,24 +17,27 @@
         상품명: {{name}}<br>
         설명: {{detail}}<br>
         가격: {{price}}<br>
-        칼라:
 
-        <select name="color">
-            <option value="">칼라선택</option>
-            {{#colorList}}
-            <option value="{{{.}}}">{{.}}</option>
-            {{/colorList}}
-        </select>
         <br>
-        사이즈:
-        <select name="size">
-            <option value="">사이즈선택</option>
-            {{#sizeList}}
-            <option value="{{{.}}}">{{.}}</option>
-            {{/sizeList}}
-        </select>
-        <br>
-        <button type="button">바로 구매</button><br>
+        <form action="/buy/{{id}}" method="GET">
+            칼라:
+            <select name="color">
+                <option value="">칼라선택</option>
+                {{#colorList}}
+                <option value="{{{.}}}">{{.}}</option>
+                {{/colorList}}
+            </select>
+            <br>
+            사이즈:
+            <select name="size">
+                <option value="">사이즈선택</option>
+                {{#sizeList}}
+                <option value="{{{.}}}">{{.}}</option>
+                {{/sizeList}}
+            </select>
+            <br>
+            <input type="submit" value="구매 하기">
+        </form>
         <form action="/putCart/{{id}}" method="GET">
             <input type="submit" value="카트에 담기">
         </form>

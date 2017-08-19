@@ -22,7 +22,6 @@ public class Item {
 
     private String color;
     private String size;
-    private int amount;
     private int price;
     private Date release;
     private String detail;

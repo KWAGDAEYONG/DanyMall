@@ -11,7 +11,7 @@ public class Merchandise {
     private String number;
     private String color;
     private String size;
-
+    private int amount;
 
     @ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_merchandise_item"))
