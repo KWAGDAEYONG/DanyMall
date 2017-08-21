@@ -41,6 +41,10 @@ public class Item {
     @Transient
     private List<String> sizeList = new ArrayList<String>();
 
+    public String getName() {
+        return name;
+    }
+
     public void setColorList() {
         this.colorList.clear();
         String colors[] = this.color.split(",");
@@ -55,5 +59,9 @@ public class Item {
         for(String s:sizes){
             this.sizeList.add(s);
         }
+    }
+
+    public Long getId() {
+        return id;
     }
 }

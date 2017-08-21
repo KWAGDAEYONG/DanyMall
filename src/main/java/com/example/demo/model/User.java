@@ -24,11 +24,8 @@ public class User {
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_user_cart"))
     private Cart cart;
 
-    /*@ManyToMany(fetch = FetchType.EAGER)
-    @JoinColumn(foreignKey = @ForeignKey(name = "fk_user_merchandise"))
-    */
-    @ManyToMany(mappedBy = "buyerList")
-    private List<Merchandise> selledMerchandise;
+    @OneToOne(mappedBy = "buyer")
+    private Sold sold;
 
 
     public void setId(Long id) {

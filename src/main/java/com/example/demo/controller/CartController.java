@@ -33,32 +33,35 @@ public class CartController {
 
     @GetMapping("/putCart/{id}")
     public String putCart(@PathVariable Long id, HttpSession httpSession,Model model){
+        commonApi.setCommonModel(httpSession,model);
         Item target = itemApi.findOne(id);
         User loginUser = (User)httpSession.getAttribute("loginUser");
         if(!SessionUtil.isLogin(httpSession)){
-            commonApi.setCommonModel(httpSession,model);
             model.addAttribute("loginFail","로그인을 해주세요");
             return "/user/login";
         }
-        cartApi.addItemIntoCart(loginUser.getCart(),target);
-        return "redirect:/";
+        if(!SessionUtil.matchLoginUser(httpSession,loginUser)){
+            model.addAttribute("loginFail","현재 로그인된 정보가 맞지 않습니다. 다시 로그인 해주세요");
+            return "/user/login";
+        }
+        model.addAttribute("putCartResult",cartApi.addItemIntoCart(loginUser,target));
+        return "/cart/putCartResult";
     }
 
     @GetMapping("/myCart/{id}")
     public String myCart(@PathVariable Long id, Model model, HttpSession httpSession){
         commonApi.setCommonModel(httpSession,model);
-        User loginUser = userApi.findOne(id);
+        User user = userApi.findOne(id);
         if(!SessionUtil.isLogin(httpSession)){
-            commonApi.setCommonModel(httpSession,model);
             model.addAttribute("loginFail","로그인을 해주세요");
             return "/user/login";
         }
-        if(!SessionUtil.matchLoginUser(httpSession,loginUser)){
-            commonApi.setCommonModel(httpSession,model);
-            model.addAttribute("loginFail","현재 로그인된 정보가 맞지 않습니다. 다시 로그인 해주세요");
+        if(!SessionUtil.matchLoginUser(httpSession,user)){
+           model.addAttribute("loginFail","현재 로그인된 정보가 맞지 않습니다. 다시 로그인 해주세요");
             return "/user/login";
         }
-        model.addAttribute("carts",loginUser.getCart().getItem());
+
+        model.addAttribute("carts",cartApi.getMyCartList(user));
         return "/cart/myCart";
     }
 }

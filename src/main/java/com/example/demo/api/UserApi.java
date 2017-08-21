@@ -23,6 +23,7 @@ public class UserApi {
     public void signUp(User user){
         Cart cart = new Cart();
         user.setCart(cart);
+        cart.setUser(user);
         userRepository.save(user);
     }
 
