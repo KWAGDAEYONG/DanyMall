@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -17,6 +18,12 @@ public class Merchandise {
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_merchandise_item"))
     private Item item;
 
+    //@ManyToMany(mappedBy = "buyList")
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_merchandise_user"))
+    private List<User> buyerList;
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -31,6 +38,18 @@ public class Merchandise {
 
     public void setSize(String size) {
         this.size = size;
+    }
+
+    public boolean choolgo(){
+        if(this.amount==0){
+            return false;
+        }
+        this.amount = this.amount-1;
+        return true;
+    }
+
+    public void addBuyer(User user){
+        this.buyerList.add(user);
     }
 
 }

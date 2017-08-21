@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.api.CommonApi;
 import com.example.demo.api.UserApi;
+import com.example.demo.model.Merchandise;
 import com.example.demo.model.User;
 import com.example.demo.staticUtility.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,5 +91,6 @@ public class UserController {
         commonApi.setCommonModel(httpSession,model);
         return "/user/signup";
     }
+
 
 }

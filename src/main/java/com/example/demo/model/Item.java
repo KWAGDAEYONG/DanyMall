@@ -56,12 +56,4 @@ public class Item {
             this.sizeList.add(s);
         }
     }
-
-    public void addCart(Cart cart){
-        this.cart.add(cart);
-    }
-
-    public Category getCategory() {
-        return category;
-    }
 }

@@ -19,8 +19,11 @@ public class ItemController {
     CommonApi commonApi;
 
     @GetMapping("/detail/{id}")
-    public String detail(@PathVariable Long id, Model model, HttpSession httpSession){
+    public String detail(@PathVariable Long id, Model model, HttpSession httpSession,String buyResult){
         model.addAttribute("item",itemApi.getDetail(id));
+        if(!"".equals(buyResult)) {
+            model.addAttribute("buyResult", buyResult);
+        }
         commonApi.setCommonModel(httpSession,model);
         return "/merchandise/detail";
     }

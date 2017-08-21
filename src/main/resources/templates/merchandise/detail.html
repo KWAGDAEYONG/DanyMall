@@ -36,6 +36,10 @@
                 {{/sizeList}}
             </select>
             <br>
+            {{#buyResult}}
+                {{buyResult}}
+            {{/buyResult}}
+            <br>
             <input type="submit" value="구매 하기">
         </form>
         <form action="/putCart/{{id}}" method="GET">

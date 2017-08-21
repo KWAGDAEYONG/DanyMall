@@ -24,6 +24,13 @@ public class User {
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_user_cart"))
     private Cart cart;
 
+    /*@ManyToMany(fetch = FetchType.EAGER)
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_user_merchandise"))
+    */
+    @ManyToMany(mappedBy = "buyerList")
+    private List<Merchandise> selledMerchandise;
+
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -77,8 +84,6 @@ public class User {
         this.name = user.name;
         this.email = user.email;
     }
-
-
 
     @Override
     public String toString() {

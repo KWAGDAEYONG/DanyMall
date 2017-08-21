@@ -49,6 +49,7 @@ public class UserApi {
             result = "비밀번호가 틀립니다";
             return result;
         }
+
         if(SessionUtil.isLogin(httpSession)){
             httpSession.removeAttribute("loginUser");
         }
@@ -56,8 +57,6 @@ public class UserApi {
         result = "success";
         return result;
     }
-
-
     public void logout(HttpSession httpSession){
         httpSession.removeAttribute("loginUser");
     }
