@@ -76,3 +76,40 @@
     border: solid;
     float: left;
 }
+
+.review_text{
+    height: 20px;
+    width: 70%;
+    float: left;
+}
+
+.review_radio{
+    height: 20px;
+    width: 20%;
+    float: left;
+}
+
+tr, table{
+    width:100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.table_writer{
+    border: 1px solid black;
+    margin: 0px;
+    padding: 0px;
+    width: 10%;
+}
+.table_content{
+    border: 1px solid black;
+    margin: 0px;
+    padding: 0px;
+    width: 70%;
+}
+.table_score{
+    border: 1px solid black;
+    margin: 0px;
+    padding: 0px;
+    width: 10%;
+}

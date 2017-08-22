@@ -4,7 +4,6 @@ import com.example.demo.api.CartApi;
 import com.example.demo.api.CommonApi;
 import com.example.demo.api.ItemApi;
 import com.example.demo.api.UserApi;
-import com.example.demo.model.Cart;
 import com.example.demo.model.Item;
 import com.example.demo.model.User;
 import com.example.demo.staticUtility.SessionUtil;

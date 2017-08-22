@@ -33,6 +33,10 @@ public class Item {
     @ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_item_category"))
     private Category category;
+
+    @OneToMany(mappedBy = "item")
+    private List<Review> review;
+
     private String img;
 
 

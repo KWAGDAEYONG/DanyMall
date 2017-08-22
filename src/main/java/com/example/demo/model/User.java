@@ -27,6 +27,9 @@ public class User {
     @OneToOne(mappedBy = "buyer")
     private Sold sold;
 
+    @OneToMany(mappedBy = "writer")
+    private List<Review> review;
+
 
     public void setId(Long id) {
         this.id = id;

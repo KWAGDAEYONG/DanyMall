@@ -37,7 +37,7 @@
             </select>
             <br>
             {{#buyResult}}
-                {{buyResult}}
+            {{buyResult}}
             {{/buyResult}}
             <br>
             <input type="submit" value="구매 하기">
@@ -50,10 +50,101 @@
         이 제품은 짱좋아요
     </div>
     <div class="review">
-        리뷰가 들어갈거에요
+        <div style="width: 70%; float:left">리뷰작성</div>
+        <div style="width: 20%; float:left">평점</div>
+        <form action="/write/{{id}}" method="post" class="review-form">
+            <input type="text" name="content" class="review_text">
+
+            <div class="review_radio">
+                <input type="radio" name="score" value=1>1
+                <input type="radio" name="score" value=2>2
+                <input type="radio" name="score" value=3 checked="checked">3
+                <input type="radio" name="score" value=4>4
+                <input type="radio" name="score" value=5>5
+            </div>
+            <div style="height: 50px; line-height: 50px; text-align: center">
+                <input type="submit" value="확인" style="text-align: center;">
+            </div>
+        </form>
+    </div>
+
+    <div class="reviewList" style="float: left; border: solid; width: 100%">
+        <table>
+            <tr>
+                <th class="table_writer">답변자</th> <th class="table_content">내용</th> <th class="table_score">평점</th>
+            </tr>
+
+            <tr>
+                {{^review}}
+                <td colspan="3" style="width: 100%">리뷰가 없습니다.</td>
+                {{/review}}
+            </tr>
+
+            {{#review}}
+            <tr>
+                <td class="table_writer">{{writer.userId}}</td><td class="table_content">{{content}}</td><td class="table_score">{{score}}</td>
+            </tr>
+            {{/review}}
+
+        </table>
     </div>
 </div>
 
 {{/item}}
 </body>
+
 </html>
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script>
+    $(".review-form input[type=submit]").click(addAnswer);
+
+    function addAnswer(e) {
+        console.log("click me");
+        e.preventDefault();
+
+        var queryString = $(".review-form").serialize();
+        console.log("query: "+queryString);
+
+        var url = $(".review-form").attr("action");
+        console.log("url: "+url);
+        $.ajax({
+            type : 'post',
+            url : url,
+            data : queryString,
+            dataType : 'json',
+            error : onError,
+            success : onSuccess});
+    }
+    function onSuccess(data, status) {
+        console.log(data);
+        var reviewTemplate = $("#reviewTemplate").html();
+        var template = reviewTemplate.format(data.writer.userId, data.content, data.score);
+        $(".reviewList").append(template);
+        $("input[name=content]").val("");
+        //css가 적용안되고 템플릿이 들어가는 이슈
+        //window.location.reload();
+        document.body.scrollTop = document.body.scrollHeight;
+    }
+
+    String.prototype.format = function() {
+        var args = arguments;
+        return this.replace(/{(\d+)}/g, function(match, number) {
+            return typeof args[number] != 'undefined'
+                ? args[number]
+                : match
+                ;
+        });
+    };
+
+    function onError() {
+
+    }
+
+</script>
+
+<script type="text/template" id="reviewTemplate">
+    <tr>
+        <td class="table_writer">{0}</td><td class="table_content">{1}</td><td class="table_score">{2}</td>
+    </tr>
+</script>
