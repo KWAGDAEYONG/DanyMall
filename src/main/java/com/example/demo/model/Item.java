@@ -49,6 +49,50 @@ public class Item {
         return name;
     }
 
+    public void setRelease(Date release) {
+        this.release = release;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
+    }
+
+    public void setStyle(String style) {
+        this.style = style;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setWeather(String weather) {
+        this.weather = weather;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
     public void setColorList() {
         this.colorList.clear();
         String colors[] = this.color.split(",");

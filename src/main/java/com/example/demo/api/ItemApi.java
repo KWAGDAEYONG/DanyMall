@@ -40,5 +40,9 @@ public class ItemApi {
         return itempRepository.findByCategory(categoryRepository.findOne(id));
     }
 
+    public Item save(Item item){
+        return itempRepository.save(item);
+    }
+
 
 }

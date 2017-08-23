@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>addItem</title>
+</head>
+<body>
+    <div>물품 추가</div>
+
+    <form action="/admin/addItemProcess" method="POST" enctype="multipart/form-data">
+        제품명:<input type="text" name="name"> <br><br>
+        가격:<input type="text" name="price"><br><br>
+        색상 종류[쉼표(,)로 구분하여 입력](ex-옐로,그린,블루):<input type="text" name="color"><br><br>
+        사이즈 종류[쉼표(,)로 구분하여 입력](ex-44,55,66)/(프리):<input type="text" name = "size"><br><br>
+        제품 설명:<textarea name="detail"></textarea><br><br>
+        스타일:<input type="text" name="style"><br><br>
+        성별:<input type="radio" name="gender" value="남성">남성 <input type="radio" name="gender" value="여성">여성<br><br>
+        계절:<input type="radio" name="weather" value="봄">봄 <input type="radio" name="weather" value="여름">여름
+        <input type="radio" name="weather" value="가을">가을 <input type="radio" name="weather" value="겨울">겨울<br><br>
+        카테고리:
+        <select name="categoryPart">
+            <option value="">카테고리 선택</option>
+            {{#category}}
+            <option value="{{{part}}}">{{part}}</option>
+            {{/category}}
+        </select>
+        <br><br>
+        상품 이미지 : <input type="file" name="file">
+        <br><br>
+        <input type="submit" value="확인">
+    </form>
+</body>
+</html>

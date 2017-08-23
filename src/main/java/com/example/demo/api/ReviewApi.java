@@ -19,7 +19,6 @@ public class ReviewApi {
     public Review writeReview(User writer, Review review, Long itemId){
         review.setWriter(writer);
         review.setItem(itempRepository.findOne(itemId));
-        System.out.println(review);
         return reviewRepository.save(review);
     }
 }

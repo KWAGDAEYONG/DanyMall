@@ -3,7 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.api.ReviewApi;
 import com.example.demo.model.Review;
 import com.example.demo.model.User;
-import com.sun.org.apache.regexp.internal.RE;
+import com.example.demo.staticUtility.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +19,11 @@ public class ReviewController {
 
     @PostMapping("/write/{id}")
     public Review write(@PathVariable Long id, Review review, HttpSession httpSession){
+        if(!SessionUtil.isLogin(httpSession)){
+            review.setContent("비정상적인 접근입니다. 뒤로가기를 눌러주세요");
+            review.setScore(0);
+            return review;
+        }
         User writer = (User)httpSession.getAttribute("loginUser");
         return reviewApi.writeReview(writer,review,id);
     }
