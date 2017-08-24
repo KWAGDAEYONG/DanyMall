@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>category</title>
+</head>
+<body>
+<div style="border: solid;">
+    <ul id='categoryList'>
+        {{#category}}
+        <li id="{{{id}}}" , class="parts">
+            {{part}}
+            <button onclick="remove('{{{id}}}');">제거</button>
+        </li>
+        {{/category}}
+    </ul>
+</div>
+
+추가할 카테고리 이름:<input type="text" id="partName">
+<button onclick="add();">추가</button>
+
+<form id="forHidden" action="/admin/updateCategory" method="POST">
+    {{#category}}
+    <input type="hidden" id="hidden_{{{id}}}" name="parts" value="{{{part}}}"></input>
+    {{/category}}
+    <input type="submit" value="확인">
+</form>
+
+</body>
+</html>
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script>
+    function remove(id) {
+        var target = document.getElementById(id);
+        target.parentNode.removeChild(target);
+
+        var hiddenTarget = document.getElementById('hidden_'+id);
+        hiddenTarget.parentNode.removeChild(hiddenTarget);
+    }
+
+    function add() {
+        var value = document.getElementById('partName').value;
+        var addLi = document.createElement("li");
+
+        var count = $('.parts').length;
+        count = count + 1;
+        var text = document.createTextNode(value);
+        addLi.appendChild(text);
+        addLi.setAttribute('id', count);
+        var removeButton = document.createElement("button");
+        var buttonText = document.createTextNode("제거");
+        removeButton.appendChild(buttonText);
+        removeButton.setAttribute('onclick', 'remove("' + count + '");');
+        addLi.appendChild(removeButton);
+
+        var element = document.getElementById("categoryList");
+        element.appendChild(addLi);
+
+        var hidden = document.createElement("input");
+        hidden.setAttribute('type','hidden');
+        hidden.setAttribute('id','hidden_'+count);
+        hidden.setAttribute('name','parts');
+        hidden.setAttribute('value',value);
+
+        var hiddenForm = document.getElementById("forHidden");
+        hiddenForm.appendChild(hidden);
+
+
+
+        document.getElementById('partName').value = "";
+    }
+
+</script>

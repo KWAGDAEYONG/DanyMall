@@ -23,6 +23,7 @@ public class Category {
         this.part = part;
     }
 
-
-
+    public String getPart() {
+        return part;
+    }
 }
