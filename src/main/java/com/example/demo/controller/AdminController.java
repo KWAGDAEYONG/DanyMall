@@ -1,18 +1,15 @@
 package com.example.demo.controller;
 
-import com.example.demo.api.CategoryApi;
-import com.example.demo.api.CommonApi;
-import com.example.demo.api.ItemApi;
+import com.example.demo.api.*;
 import com.example.demo.model.Category;
 import com.example.demo.model.Item;
+import com.example.demo.model.Merchandise;
+import com.example.demo.model.Sold;
 import com.example.demo.staticUtility.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
@@ -25,6 +22,8 @@ import java.util.List;
 @RequestMapping("/admin")
 public class AdminController {
 
+    private int mer_num = 0;
+
     @Autowired
     CategoryApi categoryApi;
 
@@ -33,6 +32,12 @@ public class AdminController {
 
     @Autowired
     ItemApi itemApi;
+
+    @Autowired
+    MerchandiseApi merchandiseApi;
+
+    @Autowired
+    SoldApi soldApi;
 
     @GetMapping("/")
     public String adminIndex() {
@@ -47,6 +52,7 @@ public class AdminController {
 
     @PostMapping("/addItemProcess")
     public String addItemProcess(Item item, @RequestParam("file") MultipartFile file, String categoryPart) {
+        //아이템 추가
         item.setCategory(categoryApi.getCategoryByPart(categoryPart));
         item.setRelease(DateUtil.getTodayDate());
         Item saveItem = itemApi.save(item);
@@ -54,6 +60,28 @@ public class AdminController {
         upLoad(file, imgNum);
         saveItem.setImg('"' + "D:danymallimg\\" + imgNum + ".PNG" + '"');
         itemApi.save(saveItem);
+
+        //상품 추가
+        String [] colors = item.getColor().split(",");
+        String [] sizes = item.getSize().split(",");
+
+        for(String color : colors){
+            for(String size : sizes){
+                Merchandise merchandise = new Merchandise();
+                merchandise.setColor(color);
+                merchandise.setSize(size);
+                merchandise.setItem(item);
+                merchandise.setAmount(0);
+
+                mer_num = mer_num+1;
+
+                merchandise.setNumber(item.getId()+"_"+mer_num);
+
+                merchandiseApi.addMerchandise(merchandise);
+            }
+        }
+        mer_num = 0;
+
         return "/admin/index";
     }
 
@@ -84,6 +112,40 @@ public class AdminController {
 
 
         return "/admin/index";
+    }
+
+    @GetMapping("/delivery")
+    public String delivery(Model model){
+        model.addAttribute("soldList",soldApi.getSoldMerchandiseList());
+
+        return "/admin/delivery";
+    }
+
+    @PostMapping("/updateDelivery")
+    public String updateDelivery(Long id[], String state[]){
+        for(int i = 0; i<id.length; i++){
+            Sold sold = soldApi.getSold(id[i]);
+            sold.updateState(state[i]);
+            //update문
+            soldApi.save(sold);
+        }
+        return "redirect:/admin/";
+    }
+    @GetMapping("/amount")
+    public String amount(Model model){
+        model.addAttribute("merList",merchandiseApi.getMerchandiseList());
+        return "/admin/amount";
+    }
+
+    @PostMapping("/updateAmount")
+    public String updateAmount(Long id[], int amount[]){
+        for(int i = 0; i<id.length; i++){
+            Merchandise merchandise = merchandiseApi.getMerchandise(id[i]);
+            merchandise.updateAmount(amount[i]);
+            //update문
+            merchandiseApi.addMerchandise(merchandise);
+        }
+        return "redirect:/admin/";
     }
 
     public void removeCateogry(Category category, String parts[]){
@@ -122,4 +184,6 @@ public class AdminController {
             e.printStackTrace();
         }
     }
+
+
 }

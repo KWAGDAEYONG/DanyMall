@@ -6,6 +6,7 @@ import javax.persistence.*;
 public class Merchandise {
 
     @Id
+    @GeneratedValue
     private Long id;
     private String number;
     private String color;
@@ -33,6 +34,26 @@ public class Merchandise {
 
     public void setSize(String size) {
         this.size = size;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void updateAmount(int amount){
+        this.amount = amount;
     }
 
     public boolean release(){

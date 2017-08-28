@@ -20,6 +20,8 @@ public class Sold {
 
     private Date soldDate;
 
+    private String deliveryState = "배송대기중";
+
 
     public void setBuyer(User buyer) {
         this.buyer = buyer;
@@ -31,5 +33,13 @@ public class Sold {
 
     public void setSoldDate(Date soldDate) {
         this.soldDate = soldDate;
+    }
+
+    public void setDeliveryState(String deliveryState) {
+        this.deliveryState = deliveryState;
+    }
+
+    public void updateState(String state){
+        this.deliveryState = state;
     }
 }

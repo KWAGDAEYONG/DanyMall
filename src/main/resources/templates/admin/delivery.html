@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>delivery</title>
+</head>
+<body>
+<form action="/admin/updateDelivery" method="POST">
+    {{#soldList}}
+        상품명:{{soldMerchandise.item.name}} 구매자:{{buyer.userId}} 배송상태:<input type="text" name="state" value="{{deliveryState}}"><input type="hidden" name="id" value="{{{id}}}"><br>
+    {{/soldList}}
+    <input type="submit" value="확인">
+</form>
+</body>
+</html>

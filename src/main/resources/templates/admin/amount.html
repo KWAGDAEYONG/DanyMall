@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>amount</title>
+</head>
+<body>
+<form action="/admin/updateAmount" method="POST">
+    {{#merList}}
+    제품명:{{item.name}} 색상:{{color}} 사이즈:{{size}} 수량:<input type="text" name="amount" value="{{amount}}"><input type="hidden" name="id" value="{{{id}}}"><br>
+    {{/merList}}
+    <input type="submit" value="확인">
+</form>
+</body>
+</html>
+

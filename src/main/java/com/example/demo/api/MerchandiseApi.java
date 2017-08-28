@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
 import java.sql.Date;
+import java.util.List;
 
 @Service
 public class MerchandiseApi {
@@ -43,5 +44,20 @@ public class MerchandiseApi {
         soldRepository.save(sold);
         return "정상적으로 구매신청이 완료되었습니다";
     }
+
+    public Merchandise addMerchandise(Merchandise merchandise){
+        return merchandiseRepository.save(merchandise);
+    }
+
+    public List<Merchandise> getMerchandiseList(){
+        return merchandiseRepository.findAll();
+    }
+
+
+
+    public Merchandise getMerchandise(Long id){
+        return merchandiseRepository.findOne(id);
+    }
+
 
 }

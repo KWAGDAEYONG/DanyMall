@@ -9,7 +9,7 @@ import java.util.List;
 public class Item {
     @Id
     @GeneratedValue
-    Long id;
+    private Long id;
 
     private String name;
 
@@ -111,5 +111,13 @@ public class Item {
 
     public Long getId() {
         return id;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public String getSize() {
+        return size;
     }
 }

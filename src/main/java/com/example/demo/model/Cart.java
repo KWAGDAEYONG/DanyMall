@@ -9,7 +9,6 @@ public class Cart {
     @GeneratedValue
     private Long id;
 
-
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_cart_item"))
     private List<Item> item;
