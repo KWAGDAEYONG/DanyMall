@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-public class Sold {
+public class Sold{
 
     @Id
     @GeneratedValue
@@ -42,4 +42,10 @@ public class Sold {
     public void updateState(String state){
         this.deliveryState = state;
     }
+
+    public Merchandise getSoldMerchandise() {
+        return soldMerchandise;
+    }
+
+
 }

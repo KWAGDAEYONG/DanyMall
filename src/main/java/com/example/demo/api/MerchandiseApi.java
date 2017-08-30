@@ -1,20 +1,17 @@
 package com.example.demo.api;
 
-import com.example.demo.model.Item;
 import com.example.demo.model.Merchandise;
 import com.example.demo.model.Sold;
 import com.example.demo.model.User;
 import com.example.demo.repository.ItempRepository;
 import com.example.demo.repository.MerchandiseRepository;
 import com.example.demo.repository.SoldRepository;
-import com.example.demo.repository.UserRepository;
 import com.example.demo.staticUtility.DateUtil;
 import com.example.demo.staticUtility.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
-import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -41,7 +38,9 @@ public class MerchandiseApi {
         sold.setBuyer(loginUser);
         sold.setSoldDate(DateUtil.getTodayDate());
         sold.setSoldMerchandise(target);
+        target.updateSalesVolume();
         soldRepository.save(sold);
+
         return "정상적으로 구매신청이 완료되었습니다";
     }
 
@@ -52,8 +51,6 @@ public class MerchandiseApi {
     public List<Merchandise> getMerchandiseList(){
         return merchandiseRepository.findAll();
     }
-
-
 
     public Merchandise getMerchandise(Long id){
         return merchandiseRepository.findOne(id);

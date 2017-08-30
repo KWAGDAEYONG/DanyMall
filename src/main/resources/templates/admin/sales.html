@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <title>sales</title>
+</head>
+<body>
+    {{#goTotal}}
+    <div>
+        <a href="/admin/sales">total</a>
+    </div>
+    {{/goTotal}}
+    <div class="sales">
+        판매량 Rank<br>
+        <ul>
+        {{#salesRank}}
+            <li>이름: {{item.name}} / 색상: {{color}} / 사이즈: {{size}} / 판매량: {{salesVolume}}</li>
+        {{/salesRank}}
+
+         {{^salesRank}}
+            판매 기록이 없습니다.
+         {{/salesRank}}
+        </ul>
+    </div>
+    <br>
+    <div class="income">
+        {{#goTotal}}월별{{/goTotal}}{{^goTotal}}총{{/goTotal}} 매출액<br>
+
+        {{#income}}
+        {{income}}
+        {{/income}}
+    </div>
+    <br>
+    <form action="/admin/salesForDate" method="GET">
+        <input type="text" name="date1" id="datepicker1"> ~ <input type="text" name="date2" id="datepicker2">
+        <input type="submit" value="확인">
+    </form>
+</body>
+</html>
+<script>
+
+    $(function() {
+        $( "#datepicker1" ).datepicker({
+            dateFormat: 'yy-mm-dd'
+        });
+    });
+
+    $(function() {
+        $( "#datepicker2" ).datepicker({
+            dateFormat: 'yy-mm-dd'
+        });
+    });
+</script>

@@ -3,7 +3,7 @@ package com.example.demo.model;
 import javax.persistence.*;
 
 @Entity
-public class Merchandise {
+public class Merchandise implements Comparable<Merchandise> {
 
     @Id
     @GeneratedValue
@@ -19,6 +19,8 @@ public class Merchandise {
 
     @OneToOne(mappedBy = "soldMerchandise")
     private Sold sold;
+
+    private int salesVolume;
 
     public void setId(Long id) {
         this.id = id;
@@ -44,12 +46,28 @@ public class Merchandise {
         this.item = item;
     }
 
+    public void setSalesVolume(int salesVolume) {
+        this.salesVolume = salesVolume;
+    }
+
     public String getColor() {
         return color;
     }
 
     public String getSize() {
         return size;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public int getSalesVolume() {
+        return salesVolume;
+    }
+
+    public Item getItem() {
+        return item;
     }
 
     public void updateAmount(int amount){
@@ -62,6 +80,19 @@ public class Merchandise {
         }
         this.amount = this.amount-1;
         return true;
+    }
+
+    public void updateSalesVolume(){
+        this.salesVolume++;
+    }
+
+    @Override
+    public int compareTo(Merchandise merchandise){
+        if(this.salesVolume>merchandise.salesVolume){
+            return -1;
+        }else{
+            return 1;
+        }
     }
 
 }

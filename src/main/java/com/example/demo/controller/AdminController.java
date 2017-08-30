@@ -16,6 +16,9 @@ import javax.servlet.http.HttpSession;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -146,6 +149,62 @@ public class AdminController {
             merchandiseApi.addMerchandise(merchandise);
         }
         return "redirect:/admin/";
+    }
+
+    @GetMapping("/sales")
+    public String sales(Model model){
+        List<Merchandise> merchandises = merchandiseApi.getMerchandiseList();
+
+        //판매량 순 정렬
+        Collections.sort(merchandises);
+
+        model.addAttribute("salesRank",merchandises);
+
+        List<Sold> soldList = soldApi.getSoldMerchandiseList();
+
+        int income = 0;
+
+        for(Sold sold : soldList){
+            income += sold.getSoldMerchandise().getItem().getPrice();
+        }
+        model.addAttribute("income",income);
+        return "/admin/sales";
+
+    }
+
+    @GetMapping("/salesForDate")
+    public String salesForDate(Date date1, Date date2, Model model){
+        List<Sold> soldList = soldApi.getSoldByDate(date1,date2);
+        List<Merchandise> merchandiseList = new ArrayList<Merchandise>();
+
+        int income = 0;
+
+        for(Sold sold : soldList){
+            Merchandise merchandise = sold.getSoldMerchandise();
+            if(merchandiseList.isEmpty()){
+                merchandiseList.add(merchandise);
+            }else{
+                if(duplicateChecker(merchandiseList, merchandise)){
+                    merchandiseList.add(merchandise);
+                }
+            }
+            income += sold.getSoldMerchandise().getItem().getPrice();
+        }
+
+        Collections.sort(merchandiseList);
+        model.addAttribute("salesRank", merchandiseList);
+        model.addAttribute("goTotal","goTotal");
+        model.addAttribute("income",income);
+        return "/admin/sales";
+    }
+
+    public boolean duplicateChecker(List<Merchandise> merchandises, Merchandise merchandise){
+        for(int i = 0; i<merchandises.size(); i++){
+            if(merchandises.get(i).equals(merchandise)){
+                return false;
+            }
+        }
+        return true;
     }
 
     public void removeCateogry(Category category, String parts[]){

@@ -49,6 +49,10 @@ public class Item {
         return name;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
     public void setRelease(Date release) {
         this.release = release;
     }

@@ -5,10 +5,11 @@ import com.example.demo.repository.SoldRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.List;
 
 @Service
-public class SoldApi {
+public class SoldApi  {
 
     @Autowired
     SoldRepository soldRepository;
@@ -23,5 +24,9 @@ public class SoldApi {
 
     public Sold save(Sold sold){
         return soldRepository.save(sold);
+    }
+
+    public List<Sold> getSoldByDate(Date date1, Date date2){
+        return soldRepository.getSoldByDate(date1, date2);
     }
 }
