@@ -19,11 +19,11 @@
         {{#salesRank}}
             <li>이름: {{item.name}} / 색상: {{color}} / 사이즈: {{size}} / 판매량: {{salesVolume}}</li>
         {{/salesRank}}
-
          {{^salesRank}}
             판매 기록이 없습니다.
          {{/salesRank}}
         </ul>
+
     </div>
     <br>
     <div class="income">
@@ -34,10 +34,22 @@
         {{/income}}
     </div>
     <br>
+    월별 관리<br>
     <form action="/admin/salesForDate" method="GET">
         <input type="text" name="date1" id="datepicker1"> ~ <input type="text" name="date2" id="datepicker2">
         <input type="submit" value="확인">
     </form>
+    <br>
+    품목별 가격 관리<br>
+    <div>
+        <form action="/admin/updatePrice" method="post">
+            {{#itemList}}
+                제품명 : {{name}} / 가격 : <input type="text" name="price" value="{{{price}}}"><input type="hidden" name="id" value="{{{id}}}"><br>
+            {{/itemList}}
+
+            <input type="submit" value="가격 수정 완료">
+        </form>
+    </div>
 </body>
 </html>
 <script>

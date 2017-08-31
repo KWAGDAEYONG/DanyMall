@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import org.hibernate.annotations.Where;
+
 import javax.persistence.*;
 
 @Entity
@@ -21,6 +23,13 @@ public class Merchandise implements Comparable<Merchandise> {
     private Sold sold;
 
     private int salesVolume;
+
+
+    private boolean isStopSale;
+
+    public void setStopSale(boolean stopSale) {
+        isStopSale = stopSale;
+    }
 
     public void setId(Long id) {
         this.id = id;

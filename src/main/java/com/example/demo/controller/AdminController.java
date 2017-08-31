@@ -168,6 +168,7 @@ public class AdminController {
             income += sold.getSoldMerchandise().getItem().getPrice();
         }
         model.addAttribute("income",income);
+        model.addAttribute("itemList",itemApi.findAll());
         return "/admin/sales";
 
     }
@@ -196,6 +197,16 @@ public class AdminController {
         model.addAttribute("goTotal","goTotal");
         model.addAttribute("income",income);
         return "/admin/sales";
+    }
+
+    @PostMapping("/updatePrice")
+    public String updatePrice(Long id[], int price[]){
+        for(int i = 0; i<id.length; i++){
+            Item item = itemApi.findOne(id[i]);
+            item.updatePrice(price[i]);
+            itemApi.save(item);
+        }
+        return "redirect:/admin/sales";
     }
 
     public boolean duplicateChecker(List<Merchandise> merchandises, Merchandise merchandise){

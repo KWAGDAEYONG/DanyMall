@@ -78,7 +78,7 @@
     </div>
 
     <div class="reviewList" style="float: left; border: solid; width: 100%">
-        <table>
+        <table class ="tt">
             <tr>
                 <th class="table_writer">답변자</th> <th class="table_content">내용</th> <th class="table_score">평점</th>
             </tr>
@@ -129,10 +129,8 @@
         console.log(data);
         var reviewTemplate = $("#reviewTemplate").html();
         var template = reviewTemplate.format(data.writer.userId, data.content, data.score);
-        $(".reviewList").append(template);
+        $(".tt").append(template);
         $("input[name=content]").val("");
-        //css가 적용안되고 템플릿이 들어가는 이슈
-        //window.location.reload();
         document.body.scrollTop = document.body.scrollHeight;
     }
 

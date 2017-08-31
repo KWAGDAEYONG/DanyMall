@@ -97,6 +97,10 @@ public class Item {
         this.img = img;
     }
 
+    public void updatePrice(int price){
+        this.price = price;
+    }
+
     public void setColorList() {
         this.colorList.clear();
         String colors[] = this.color.split(",");
