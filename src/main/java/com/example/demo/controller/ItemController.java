@@ -18,6 +18,9 @@ public class ItemController {
     @Autowired
     CommonApi commonApi;
 
+    @Autowired
+    MerchandiseApi merchandiseApi;
+
     @GetMapping("/detail/{id}")
     public String detail(@PathVariable Long id, Model model, HttpSession httpSession,String buyResult){
         model.addAttribute("item",itemApi.getDetail(id));

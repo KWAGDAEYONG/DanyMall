@@ -5,6 +5,7 @@ import org.hibernate.annotations.Where;
 import javax.persistence.*;
 
 @Entity
+@Where(clause = "IS_STOP_SALE='FALSE'")
 public class Merchandise implements Comparable<Merchandise> {
 
     @Id
@@ -24,8 +25,8 @@ public class Merchandise implements Comparable<Merchandise> {
 
     private int salesVolume;
 
-
-    private boolean isStopSale;
+    @Column(name = "isStopSale")
+    private boolean isStopSale=false;
 
     public void setStopSale(boolean stopSale) {
         isStopSale = stopSale;

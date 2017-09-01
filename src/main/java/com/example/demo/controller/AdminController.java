@@ -5,6 +5,7 @@ import com.example.demo.model.Category;
 import com.example.demo.model.Item;
 import com.example.demo.model.Merchandise;
 import com.example.demo.model.Sold;
+import com.example.demo.repository.MerchandiseRepository;
 import com.example.demo.staticUtility.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,6 +42,9 @@ public class AdminController {
 
     @Autowired
     SoldApi soldApi;
+
+    @Autowired
+    MerchandiseRepository merchandiseRepository;
 
     @GetMapping("/")
     public String adminIndex() {
@@ -134,6 +138,7 @@ public class AdminController {
         }
         return "redirect:/admin/";
     }
+
     @GetMapping("/amount")
     public String amount(Model model){
         model.addAttribute("merList",merchandiseApi.getMerchandiseList());
@@ -167,6 +172,7 @@ public class AdminController {
         for(Sold sold : soldList){
             income += sold.getSoldMerchandise().getItem().getPrice();
         }
+
         model.addAttribute("income",income);
         model.addAttribute("itemList",itemApi.findAll());
         return "/admin/sales";
@@ -208,6 +214,18 @@ public class AdminController {
         }
         return "redirect:/admin/sales";
     }
+
+    @GetMapping("/stopSale/{id}")
+    public String stopSale(@PathVariable Long id){
+        Merchandise merchandise = merchandiseApi.getMerchandise(id);
+
+        merchandise.setStopSale(true);
+        merchandiseApi.addMerchandise(merchandise);
+
+        return "redirect:/admin/sales";
+    }
+
+
 
     public boolean duplicateChecker(List<Merchandise> merchandises, Merchandise merchandise){
         for(int i = 0; i<merchandises.size(); i++){

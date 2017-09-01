@@ -31,7 +31,8 @@ public class MerchandiseApi {
             return "로그인 정보가 끊겼습니다. 다시 로그인해주세요.";
         }
         Merchandise target = merchandiseRepository.findByItemAndColorAndSize(itempRepository.findOne(id), color, size);
-        if (!target.release()) {
+
+        if (target==null||!target.release()) {
             return "재고가 없습니다.";
         }
         User loginUser = (User) httpSession.getAttribute("loginUser");

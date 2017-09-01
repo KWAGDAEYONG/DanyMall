@@ -17,7 +17,7 @@
         판매량 Rank<br>
         <ul>
         {{#salesRank}}
-            <li>이름: {{item.name}} / 색상: {{color}} / 사이즈: {{size}} / 판매량: {{salesVolume}}</li>
+            <li>이름: {{item.name}} / 색상: {{color}} / 사이즈: {{size}} / 판매량: {{salesVolume}}</li> <a href="/admin/stopSale/{{{id}}}">판매중지</a>
         {{/salesRank}}
          {{^salesRank}}
             판매 기록이 없습니다.
