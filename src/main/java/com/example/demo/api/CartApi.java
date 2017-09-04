@@ -22,13 +22,8 @@ public class CartApi {
     CartRepository cartRepository;
 
     @Autowired
-    UserRepository userRepository;
-
-    @Autowired
     ItempRepository itempRepository;
 
-    @Autowired
-    CommonApi commonApi;
 
     public String addItemIntoCart(User user, Item item){
 

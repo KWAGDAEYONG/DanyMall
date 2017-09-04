@@ -44,7 +44,8 @@ public class AdminController {
     SoldApi soldApi;
 
     @Autowired
-    MerchandiseRepository merchandiseRepository;
+    UserApi userApi;
+
 
     @GetMapping("/")
     public String adminIndex() {
@@ -224,7 +225,6 @@ public class AdminController {
 
         return "redirect:/admin/sales";
     }
-
 
 
     public boolean duplicateChecker(List<Merchandise> merchandises, Merchandise merchandise){

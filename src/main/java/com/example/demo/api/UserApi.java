@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Service
 public class UserApi {
@@ -70,4 +71,5 @@ public class UserApi {
     public User findByUserId(String userId){
         return userRepository.findByUserId(userId);
     }
+
 }
