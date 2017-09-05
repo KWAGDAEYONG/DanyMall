@@ -92,6 +92,10 @@ public class Merchandise implements Comparable<Merchandise> {
         return true;
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
     public void updateSalesVolume(){
         this.salesVolume++;
     }

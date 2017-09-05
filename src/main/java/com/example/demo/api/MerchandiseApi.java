@@ -26,21 +26,25 @@ public class MerchandiseApi {
     @Autowired
     SoldRepository soldRepository;
 
-    public String buy(Long id, String color, String size, HttpSession httpSession, Sold sold) {
+    public String buy(Long id, String color, String size, HttpSession httpSession, int qty) {
         if (!SessionUtil.isLogin(httpSession)) {
             return "로그인 정보가 끊겼습니다. 다시 로그인해주세요.";
         }
         Merchandise target = merchandiseRepository.findByItemAndColorAndSize(itempRepository.findOne(id), color, size);
-
-        if (target==null||!target.release()) {
+        if (target==null||target.getAmount()<qty||!target.release()) {
             return "재고가 없습니다.";
         }
         User loginUser = (User) httpSession.getAttribute("loginUser");
-        sold.setBuyer(loginUser);
-        sold.setSoldDate(DateUtil.getTodayDate());
-        sold.setSoldMerchandise(target);
-        target.updateSalesVolume();
-        soldRepository.save(sold);
+
+        for(int i = 0; i<qty; i++) {
+            Sold sold = new Sold();
+            target.release();
+            sold.setBuyer(loginUser);
+            sold.setSoldDate(DateUtil.getTodayDate());
+            sold.setSoldMerchandise(target);
+            target.updateSalesVolume();
+            soldRepository.save(sold);
+        }
 
         return "정상적으로 구매신청이 완료되었습니다";
     }

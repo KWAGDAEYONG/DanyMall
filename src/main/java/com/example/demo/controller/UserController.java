@@ -70,8 +70,10 @@ public class UserController {
     }
 
     @PostMapping("/signupProcess")
-    public String signupProcess(User user){
-        userApi.signUp(user);
+    public String signupProcess(User user, HttpSession httpSession, Model model){
+        httpSession.setAttribute("loginUser",userApi.signUp(user));
+        commonApi.setCommonModel(httpSession, model);
+
         return "redirect:/";
     }
 

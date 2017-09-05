@@ -21,11 +21,11 @@ public class UserApi {
     @Autowired
     CartRepository cartRepository;
 
-    public void signUp(User user){
+    public User signUp(User user){
         Cart cart = new Cart();
         user.setCart(cart);
         cart.setUser(user);
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 
     public boolean modify(Long id, User user, HttpSession httpSession){
