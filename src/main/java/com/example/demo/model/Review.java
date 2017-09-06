@@ -1,6 +1,8 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Review {
@@ -20,6 +22,21 @@ public class Review {
     @ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_review_item"))
     private Item item;
+
+    @Transient
+    private List<Integer> stars = new ArrayList<Integer>();
+
+    @Transient
+    private List<Integer> noStars = new ArrayList<Integer>();
+
+    public void setStar(){
+        for(int i = 0; i<this.score; i++){
+            this.stars.add(1);
+        }
+        for(int i = 0; i<5-this.score; i++){
+            this.noStars.add(1);
+        }
+    }
 
     public void setWriter(User writer) {
         this.writer = writer;
@@ -51,5 +68,16 @@ public class Review {
 
     public Item getItem() {
         return item;
+    }
+
+    @Override
+    public String toString() {
+        return "Review{" +
+                "id=" + id +
+                ", writer=" + writer +
+                ", content='" + content + '\'' +
+                ", score=" + score +
+                ", item=" + item +
+                '}';
     }
 }

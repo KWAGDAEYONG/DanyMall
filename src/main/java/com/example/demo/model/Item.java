@@ -37,6 +37,12 @@ public class Item {
     @OneToMany(mappedBy = "item")
     private List<Review> review;
 
+    @Transient
+    private int reviewCount;
+
+    @Transient
+    private List<Integer> average = new ArrayList<Integer>();
+
     private String img;
 
 
@@ -44,6 +50,25 @@ public class Item {
     private List<String> colorList = new ArrayList<String>();
     @Transient
     private List<String> sizeList = new ArrayList<String>();
+
+    public void setReviewCount() {
+        this.reviewCount = this.review.size();
+    }
+
+    public void setAverage() {
+        int totalCount = reviewCount;
+        int totalScore = 0;
+        int result = 0;
+        for(Review review: this.review){
+            totalScore += review.getScore();
+        }
+        if(totalCount!=0) {
+            result = totalScore / totalCount;
+        }
+        for(int i = 0; i<result; i++){
+            this.average.add(1);
+        }
+    }
 
     public String getName() {
         return name;
@@ -117,9 +142,19 @@ public class Item {
         }
     }
 
+    public void setReviewStar(){
+        for(Review review:this.review){
+            review.setStar();
+        }
+    }
+
     public Long getId() {
         return id;
     }
+
+ /*   public List<Review> getReview() {
+        return review;
+    }*/
 
     public String getColor() {
         return color;

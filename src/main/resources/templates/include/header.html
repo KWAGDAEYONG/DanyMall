@@ -11,7 +11,75 @@
 <![endif]-->
 
 <!-- header section start -->
-<header class="header-two">
+<header class="pages-header">
+    <div class="header-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="left-header clearfix">
+                        <ul>
+                            <li><p><i class="pe-7s-call"></i>010-2290-7387</p></li>
+                            <li><p><i class="pe-7s-clock"></i>Mon-fri : 9:00-19:00</p></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="right-header">
+                        <ul>
+                            <li><i class="pe-7s-search"></i>
+                                <form method="get" id="searchform" action="#">
+                                    <input type="text" value="" name="s" id="ws" placeholder="Search product..." />
+                                    <button type="submit"><i class="pe-7s-search"></i></button>
+                                </form>
+                            </li>
+                            <li><a href="#"><i class="pe-7s-settings"></i></a>
+                                <ul class="drop-setting">
+                                    <li><a href="/login"><i class="fa fa-lock"></i>Login</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-bottom" id="sticky-menu">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2 col-md-2">
+                    <div class="logo">
+                        <a href="/"><img src="img/logo2.png" alt="Crazy Fashion" /></a>
+                    </div>
+                </div>
+                <div class="col-sm-10 col-md-10">
+                    <div class="mainmenu clearfix">
+                        <nav>
+                            <ul>
+                                {{#category}}
+                                <li><a href="/{{{id}}}">{{part}}</a></li>
+                                {{/category}}
+                            </ul>
+                        </nav>
+                    </div>
+                    &lt;!&ndash; mobile menu start &ndash;&gt;
+                    <div class="mobile-menu-area">
+                        <div class="mobile-menu">
+                            <nav id="dropdown">
+                                <ul>
+                                    {{#category}}
+                                    <li><a href="/{{{id}}}">{{part}}</a></li>
+                                    {{/category}}
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    &lt;!&ndash; mobile menu end &ndash;&gt;
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!--<header class="header-two">
     <div class="header-top header-top-two">
         <div class="container">
             <div class="row">
@@ -93,6 +161,6 @@
             </div>
         </div>
     </div>
-</header>
+</header>-->
 </body>
 </html>

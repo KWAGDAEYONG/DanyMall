@@ -1,6 +1,7 @@
 package com.example.demo.api;
 
 import com.example.demo.model.Item;
+import com.example.demo.model.Review;
 import com.example.demo.repository.CartRepository;
 import com.example.demo.repository.CategoryRepository;
 import com.example.demo.repository.ItempRepository;
@@ -31,8 +32,11 @@ public class ItemApi {
 
     public Item getDetail(Long id){
         Item item = itempRepository.findOne(id);
+        item.setReviewStar();
         item.setColorList();
         item.setSizeList();
+        item.setReviewCount();
+        item.setAverage();
         return item;
     }
 
@@ -43,6 +47,5 @@ public class ItemApi {
     public Item save(Item item){
         return itempRepository.save(item);
     }
-
 
 }

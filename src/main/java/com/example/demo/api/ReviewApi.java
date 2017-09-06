@@ -6,6 +6,9 @@ import com.example.demo.repository.ItempRepository;
 import com.example.demo.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
+import java.util.List;
 
 @Service
 public class ReviewApi {
@@ -19,6 +22,7 @@ public class ReviewApi {
     public Review writeReview(User writer, Review review, Long itemId){
         review.setWriter(writer);
         review.setItem(itempRepository.findOne(itemId));
+        review.setStar();
         return reviewRepository.save(review);
     }
 }
