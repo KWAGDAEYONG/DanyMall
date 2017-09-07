@@ -2,26 +2,23 @@ package com.example.demo.api;
 
 import com.example.demo.model.Review;
 import com.example.demo.model.User;
-import com.example.demo.repository.ItempRepository;
+import com.example.demo.repository.ItemRepository;
 import com.example.demo.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-
-import java.util.List;
 
 @Service
 public class ReviewApi {
 
     @Autowired
-    ItempRepository itempRepository;
+    ItemRepository itemRepository;
 
     @Autowired
     ReviewRepository reviewRepository;
 
     public Review writeReview(User writer, Review review, Long itemId){
         review.setWriter(writer);
-        review.setItem(itempRepository.findOne(itemId));
+        review.setItem(itemRepository.findOne(itemId));
         review.setStar();
         return reviewRepository.save(review);
     }

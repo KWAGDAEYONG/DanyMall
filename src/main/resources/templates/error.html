@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Login || Crazy Fashion</title>
+        <title>404 || Crazy Fashion</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- favicon -->
@@ -15,162 +15,54 @@
 		<link href='https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700' rel='stylesheet' type='text/css'>
 		<!-- all css here -->
 		<!-- bootstrap v3.3.6 css -->
-        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../css/bootstrap.min.css">
 		<!-- animate css -->
-        <link rel="stylesheet" href="css/animate.css">
+        <link rel="stylesheet" href="../../css/animate.css">
 		<!-- pe-icon-7-stroke -->
-		<link rel="stylesheet" href="css/pe-icon-7-stroke.min.css">
+		<link rel="stylesheet" href="../../css/pe-icon-7-stroke.min.css">
 		<!-- pe-icon-7-stroke -->
-		<link rel="stylesheet" href="css/jquery.simpleLens.css">
+		<link rel="stylesheet" href="../../css/jquery.simpleLens.css">
 		<!-- jquery-ui.min css -->
-        <link rel="stylesheet" href="css/jquery-ui.min.css">
+        <link rel="stylesheet" href="../../css/jquery-ui.min.css">
 		<!-- meanmenu css -->
-        <link rel="stylesheet" href="css/meanmenu.min.css">
+        <link rel="stylesheet" href="../../css/meanmenu.min.css">
 		<!-- nivo.slider css -->
-        <link rel="stylesheet" href="css/nivo-slider.css">
+        <link rel="stylesheet" href="../../css/nivo-slider.css">
 		<!-- owl.carousel css -->
-        <link rel="stylesheet" href="css/owl.carousel.css">
+        <link rel="stylesheet" href="../../css/owl.carousel.css">
 		<!-- font-awesome css -->
-        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="../../css/font-awesome.min.css">
 		<!-- style css -->
-		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="../../css/style.css">
 		<!-- responsive css -->
-        <link rel="stylesheet" href="css/responsive.css">
+        <link rel="stylesheet" href="../../css/responsive.css">
 		<!-- modernizr js -->
-        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+        <script src="../../js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
     <body>
+
         <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-
-        <!-- header section start -->
 		{{> /include/header }}
-		<!-- header section end -->
-        <!-- pages-title-start -->
-		<div class="pages-title section-padding">
-			<div class="container">
-				<div class="row">
-					<div class="col-xs-12 text-center">
-						<div class="pages-title-text">
-							<h3>Login</h3>
-							<ul>
-								<li><a href="/">Home</a></li>
-								<li><span>/</span>Login</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- pages-title-end -->
-		<!-- login content section start -->
-		<section class="pages login-page section-padding-top">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="login-text">
-							<div class="log-title">
-								<h3><strong>Login</strong></h3>
-								<hr />
-							</div>
-							<div class="custom-input">
-								<p>If you have an account with us, Please log in!</p>
-								<form action="/login" method="post">
-									<input type="text" name="userId" placeholder="id" />
-									<input type="password" name="password" placeholder="Password" />
+        <!-- header section start -->
 
-									<div class="submit-text coupon">
-										<button type="submit">Login</button>
-									</div>
-									<br>
-									{{#loginFail}}
-									<p>{{loginFail}}</p>
-									<a class="forget" href="#">Forget your password?</a>
-									{{/loginFail}}
-								</form>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="login-text new-customer">
-							<div class="log-title">
-								<h3><strong>new customers</strong></h3>
-								<hr />
-							</div>
-							<div class="custom-input">
-								<form action="/signupProcess" method="post">
-									<input type="text" name="userId" placeholder="ID" />
-									<input type="password" name="password" placeholder="Password" />
-									<input type="text" name="name" placeholder="Name" />
-									<!--<input type="password" name="password" placeholder="Confirm Password" />-->
-									<input type="text" name="email" placeholder="Email Address" />
-
-									<div class="submit-text coupon">
-										<button type="submit">Register</button>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
+        <!-- header section end -->
+		<!-- 404 section start -->
+		<section class="pages page-404 text-center">
+			<img src="../../img/error.jpg" alt="" />
+			<div class="container">
+				<div class="not-found-text">
+					{{#putCart}}
+						{{putCart}}
+					{{/putCart}}
+					<a href="/">back to home page</a>
 				</div>
 			</div>
 		</section>
-		<!-- login content section end -->
+		<!-- 404 section end -->
         <!-- footer section start -->
-		<footer class="section-padding-top">
-			<!-- brand logo area start -->
-			<div class="brand-logo">
-				<div class="barnd-bg">
-					<div class="container">
-						<div class="row text-center">
-							<div id="brand-logo" class="owl-carousel product-slider owl-theme">
-								<div class="col-xs-12">
-									<div class="single-brand">
-										<a href="#"><img src="img/brand/1.png" alt="" /></a>
-									</div>
-								</div>
-								<div class="col-xs-12">
-									<div class="single-brand">
-										<a href="#"><img src="img/brand/2.png" alt="" /></a>
-									</div>
-								</div>
-								<div class="col-xs-12">
-									<div class="single-brand">
-										<a href="#"><img src="img/brand/3.png" alt="" /></a>
-									</div>
-								</div>
-								<div class="col-xs-12">
-									<div class="single-brand">
-										<a href="#"><img src="img/brand/4.png" alt="" /></a>
-									</div>
-								</div>
-								<div class="col-xs-12">
-									<div class="single-brand">
-										<a href="#"><img src="img/brand/5.png" alt="" /></a>
-									</div>
-								</div>
-								<div class="col-xs-12">
-									<div class="single-brand">
-										<a href="#"><img src="img/brand/6.png" alt="" /></a>
-									</div>
-								</div>
-								<div class="col-xs-12">
-									<div class="single-brand">
-										<a href="#"><img src="img/brand/1.png" alt="" /></a>
-									</div>
-								</div>
-								<div class="col-xs-12">
-									<div class="single-brand">
-										<a href="#"><img src="img/brand/2.png" alt="" /></a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- brand logo section end -->
+		<footer>
 			<!-- service section start -->
 			<div class="service section-padding">
 				<div class="container">
@@ -334,26 +226,26 @@
         
 		<!-- all js here -->
 		<!-- jquery latest version -->
-        <script src="js/vendor/jquery-1.12.0.min.js"></script>
+        <script src="../../js/vendor/jquery-1.12.0.min.js"></script>
 		<!-- bootstrap js -->
-        <script src="js/bootstrap.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
 		<!-- owl.carousel js -->
-        <script src="js/owl.carousel.min.js"></script>
+        <script src="../../js/owl.carousel.min.js"></script>
 		<!-- meanmenu js -->
-        <script src="js/jquery.meanmenu.js"></script>
+        <script src="../../js/jquery.meanmenu.js"></script>
 		<!-- countdown JS -->
-        <script src="js/countdown.js"></script>
+        <script src="../../js/countdown.js"></script>
 		<!-- nivo.slider JS -->
-        <script src="js/jquery.nivo.slider.pack.js"></script>
+        <script src="../../js/jquery.nivo.slider.pack.js"></script>
 		<!-- simpleLens JS -->
-        <script src="js/jquery.simpleLens.min.js"></script>
+        <script src="../../js/jquery.simpleLens.min.js"></script>
 		<!-- jquery-ui js -->
-        <script src="js/jquery-ui.min.js"></script>
+        <script src="../../js/jquery-ui.min.js"></script>
 		<!-- sticky js -->
-        <script src="js/sticky.js"></script>
+        <script src="../../js/sticky.js"></script>
 		<!-- plugins js -->
-        <script src="js/plugins.js"></script>
+        <script src="../../js/plugins.js"></script>
 		<!-- main js -->
-        <script src="js/main.js"></script>
+        <script src="../../js/main.js"></script>
     </body>
 </html>

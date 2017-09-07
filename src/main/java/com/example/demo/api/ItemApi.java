@@ -1,10 +1,9 @@
 package com.example.demo.api;
 
 import com.example.demo.model.Item;
-import com.example.demo.model.Review;
 import com.example.demo.repository.CartRepository;
 import com.example.demo.repository.CategoryRepository;
-import com.example.demo.repository.ItempRepository;
+import com.example.demo.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +13,7 @@ import java.util.List;
 public class ItemApi {
 
     @Autowired
-    ItempRepository itempRepository;
+    ItemRepository itemRepository;
 
     @Autowired
     CartRepository cartRepository;
@@ -23,15 +22,15 @@ public class ItemApi {
     CategoryRepository categoryRepository;
 
     public List<Item> findAll(){
-        return itempRepository.findAll();
+        return itemRepository.findAll();
     }
 
     public Item findOne(Long id){
-        return itempRepository.findOne(id);
+        return itemRepository.findOne(id);
     }
 
     public Item getDetail(Long id){
-        Item item = itempRepository.findOne(id);
+        Item item = itemRepository.findOne(id);
         item.setReviewStar();
         item.setColorList();
         item.setSizeList();
@@ -41,11 +40,18 @@ public class ItemApi {
     }
 
     public List<Item> getItemsByCategory(Long id){
-        return itempRepository.findByCategory(categoryRepository.findOne(id));
+        return itemRepository.findByCategory(categoryRepository.findOne(id));
     }
 
     public Item save(Item item){
-        return itempRepository.save(item);
+        return itemRepository.save(item);
     }
 
+    public List<Item> getNewArrivals(){
+        return itemRepository.getNewArrivals();
+    }
+
+    public List<Item> search(String price, String weather, String style, String gender){
+        return itemRepository.search(price, weather, style, gender);
+    }
 }

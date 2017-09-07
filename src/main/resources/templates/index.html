@@ -70,7 +70,7 @@
 									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.  IT Lorem Ipsum has been the industry's standard dummy text ever since the 1500, when an unknown printer took a galley of type and scrambled it.</p>
 								</div>
 								<div class="animated slider-btn fadeInUpBig">
-									<a class="shop-btn" href="product-grid-left.html">Shop now</a>
+									<a class="shop-btn" href="/2290">Shop now</a>
 								</div>
 							</div>
 						</div>
@@ -87,7 +87,7 @@
 									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.  IT Lorem Ipsum has been the industry's standard dummy text ever since the 1500, when an unknown printer took a galley of type and scrambled it.</p>
 								</div>
 								<div class="animated slider-btn fadeInUpBig">
-									<a class="shop-btn" href="product-grid-left.html">Shop now</a>
+									<a class="shop-btn" href="/2290">Shop now</a>
 								</div>
 							</div>
 						</div>
@@ -104,7 +104,7 @@
 									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.  IT Lorem Ipsum has been the industry's standard dummy text ever since the 1500, when an unknown printer took a galley of type and scrambled it.</p>
 								</div>
 								<div class="animated slider-btn fadeInUpBig">
-									<a class="shop-btn" href="product-grid-left.html">Shop now</a>
+									<a class="shop-btn" href="/2290">Shop now</a>
 								</div>
 							</div>
 						</div>
@@ -121,7 +121,7 @@
 									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.  IT Lorem Ipsum has been the industry's standard dummy text ever since the 1500, when an unknown printer took a galley of type and scrambled it.</p>
 								</div>
 								<div class="animated slider-btn fadeInUpBig">
-									<a class="shop-btn" href="product-grid-left.html">Shop now</a>
+									<a class="shop-btn" href="/2290">Shop now</a>
 								</div>
 							</div>
 						</div>
@@ -138,7 +138,7 @@
 									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.  IT Lorem Ipsum has been the industry's standard dummy text ever since the 1500, when an unknown printer took a galley of type and scrambled it.</p>
 								</div>
 								<div class="animated slider-btn fadeInUpBig">
-									<a class="shop-btn" href="product-grid-left.html">Shop now</a>
+									<a class="shop-btn" href="/2290">Shop now</a>
 								</div>
 							</div>
 						</div>
@@ -166,7 +166,6 @@
 								</ul>
 							</nav>
 						</div>
-						<!-- mobile menu start -->
 						<div class="mobile-menu-area">
 							<div class="mobile-menu">
 								<nav id="dropdown">
@@ -178,7 +177,6 @@
 								</nav>
 							</div>
 						</div>
-						<!-- mobile menu end -->
 					</div>
 				</div>
 			</div>
@@ -197,27 +195,19 @@
 				</div>
 				<div class="row text-center">
 					<div id="new-products" class="owl-carousel product-slider owl-theme">
-
+						{{#newArrivals}}
 						<div class="col-xs-12">
 							<div class="single-product">
 								<div class="product-img">
-									<div class="pro-type">
-										<span>new</span>
-									</div>
-									<a href="#"><img src="img/products/5.png" alt="Product Title" /></a>
+									<a href="/detail/{{id}}"><img src="img/products/5.png" alt="Product Title" /></a>
 								</div>
 								<div class="product-dsc">
-									<p><a href="#">Product Title</a></p>
-									<span>$52.00</span>
-								</div>
-								<div class="actions-btn">
-									<a href="#" data-toggle="modal" data-trigger="hover" data-target="#quick-view" data-placement="right" title="Quick View"><i class="pe-7s-expand1"></i></a>
-									<a href="#" data-toggle="tooltip" data-placement="right" title="Add To Wishlist"><i class="pe-7s-like"></i></a>
-									<a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="pe-7s-repeat"></i></a>
-									<a href="#" data-toggle="tooltip" data-placement="right" title="Add To Cart"><i class="pe-7s-cart"></i></a>
+									<p><a href="#">{{name}}</a></p>
+									<span><i class="fa fa-krw" aria-hidden="true"></i> {{price}}</span>
 								</div>
 							</div>
 						</div>
+						{{/newArrivals}}
 						<!-- single product end -->
 					</div>
 				</div>
@@ -290,12 +280,7 @@
 									</div>
 									<div class="product-dsc">
 										<p><a href="#">{{name}}</a></p>
-										<span>{{price}}원</span>
-									</div>
-									<div class="actions-btn"><a href="#" data-toggle="modal" data-trigger="hover" data-target="#quick-view" data-placement="right" title="Quick View"><i class="pe-7s-expand1"></i></a>
-										<a href="#" data-toggle="tooltip" data-placement="right" title="Add To Wishlist"><i class="pe-7s-like"></i></a>
-										<a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="pe-7s-repeat"></i></a>
-										<a href="#" data-toggle="tooltip" data-placement="right" title="Add To Cart"><i class="pe-7s-cart"></i></a>
+										<span><i class="fa fa-krw" aria-hidden="true"></i> {{price}}</span>
 									</div>
 								</div>
 							</div>

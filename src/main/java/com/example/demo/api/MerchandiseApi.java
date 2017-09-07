@@ -3,7 +3,7 @@ package com.example.demo.api;
 import com.example.demo.model.Merchandise;
 import com.example.demo.model.Sold;
 import com.example.demo.model.User;
-import com.example.demo.repository.ItempRepository;
+import com.example.demo.repository.ItemRepository;
 import com.example.demo.repository.MerchandiseRepository;
 import com.example.demo.repository.SoldRepository;
 import com.example.demo.staticUtility.DateUtil;
@@ -21,7 +21,7 @@ public class MerchandiseApi {
     MerchandiseRepository merchandiseRepository;
 
     @Autowired
-    ItempRepository itempRepository;
+    ItemRepository itemRepository;
 
     @Autowired
     SoldRepository soldRepository;
@@ -30,7 +30,7 @@ public class MerchandiseApi {
         if (!SessionUtil.isLogin(httpSession)) {
             return "로그인 정보가 끊겼습니다. 다시 로그인해주세요.";
         }
-        Merchandise target = merchandiseRepository.findByItemAndColorAndSize(itempRepository.findOne(id), color, size);
+        Merchandise target = merchandiseRepository.findByItemAndColorAndSize(itemRepository.findOne(id), color, size);
         if (target==null||target.getAmount()<qty||!target.release()) {
             return "재고가 없습니다.";
         }

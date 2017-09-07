@@ -4,6 +4,7 @@ import com.example.demo.api.CartApi;
 import com.example.demo.api.CommonApi;
 import com.example.demo.api.ItemApi;
 import com.example.demo.api.UserApi;
+import com.example.demo.model.Cart;
 import com.example.demo.model.Item;
 import com.example.demo.model.User;
 import com.example.demo.staticUtility.SessionUtil;
@@ -43,8 +44,12 @@ public class CartController {
             model.addAttribute("loginFail","현재 로그인된 정보가 맞지 않습니다. 다시 로그인 해주세요");
             return "/user/login";
         }
-        model.addAttribute("putCartResult",cartApi.addItemIntoCart(loginUser,target));
-        return "/cart/putCartResult";
+        String result = cartApi.addItemIntoCart(loginUser,target);
+        if(!"success".equals(result)){
+            model.addAttribute("putCart",result);
+            return "/error";
+        }
+        return "redirect:/myCart/"+loginUser.getId();
     }
 
     @GetMapping("/myCart/{id}")
@@ -62,5 +67,12 @@ public class CartController {
 
         model.addAttribute("carts",cartApi.getMyCartList(user));
         return "/cart/myCart";
+    }
+
+    @GetMapping("/removeCart/{id}")
+    public String removeCart(@PathVariable Long id, HttpSession httpSession, Model model){
+        User user = (User)httpSession.getAttribute("loginUser");
+        cartApi.removeCart(user,itemApi.findOne(id));
+        return "redirect:/myCart/"+user.getId();
     }
 }

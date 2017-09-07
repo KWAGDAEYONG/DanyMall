@@ -31,14 +31,14 @@ public class HomeController {
     public String home(HttpSession httpSession, Model model){
         commonApi.setCommonModel(httpSession,model);
         model.addAttribute("item", itemApi.findAll());
+        List<Item> dd =itemApi.getNewArrivals();
+        for(Item item : dd){
+            System.out.println(item.getId());
+        }
+        model.addAttribute("newArrivals",dd);
         return "/index";
     }
 
-    @GetMapping("/{id}")
-    public String category(@PathVariable Long id, Model model, HttpSession httpSession){
-        commonApi.setCommonModel(httpSession, model);
-        model.addAttribute("categoryItem",itemApi.getItemsByCategory(id));
-        return "/index";
-    }
+
 
 }

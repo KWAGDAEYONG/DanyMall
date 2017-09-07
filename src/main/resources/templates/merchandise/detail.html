@@ -132,7 +132,7 @@
                                 <a href="#">Add review</a>
                             </div>
                             <div class="amount">
-                                <h4>{{price}}원</h4>
+                                <h4><i class="fa fa-krw" aria-hidden="true"></i> {{price}}</h4>
                             </div>
                             <p>{{detail}}</p>
                             <form action="/buy/{{id}}" method="GET">
@@ -170,7 +170,7 @@
 
                                 <div class="dse-btn">
                                     <div class="row">
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-12">
                                             <div class="por-dse">
                                                 <ul>
                                                     <li class="share-btn qty clearfix"><span>quantity</span>
@@ -184,9 +184,14 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div class="col-sm-6">
+
+                                        <br><br><br><br><br>
+
+                                        <div class="col-sm-12">
                                             <div class="submit-text coupon">
                                                 <button type="submit">Buy</button>
+                                                <span>&nbsp&nbsp&nbsp&nbsp</span>
+                                                <a href="/putCart/{{id}}">add Cart</a>
                                             </div>
                                         </div>
                                     </div>
@@ -912,7 +917,7 @@
                             </div>
                             <div class="footer-menu">
                                 <ul>
-                                    <li><a href="login.html">My Account</a></li>
+                                    <li><a href="../user/loginBeforeModify.html">My Account</a></li>
                                     <li><a href="wishlist.html">My Wishlist</a></li>
                                     <li><a href="order-complete">My Orders</a></li>
                                     <li><a href="#">My Credit slips</a></li>

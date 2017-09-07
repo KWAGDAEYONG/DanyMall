@@ -5,13 +5,10 @@ import com.example.demo.model.Cart;
 import com.example.demo.model.Item;
 import com.example.demo.model.User;
 import com.example.demo.repository.CartRepository;
-import com.example.demo.repository.ItempRepository;
-import com.example.demo.repository.UserRepository;
-import com.example.demo.staticUtility.SessionUtil;
+import com.example.demo.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 
@@ -22,22 +19,30 @@ public class CartApi {
     CartRepository cartRepository;
 
     @Autowired
-    ItempRepository itempRepository;
+    ItemRepository itemRepository;
 
 
     public String addItemIntoCart(User user, Item item){
 
-        Cart cart = user.getCart();
+        Cart cart = cartRepository.findByUser(user);
         if(cart.alreadyContainItemInCart(item)){
             return "카트에 해당 물품이 이미 있습니다";
         }
         cart.addItem(item);
         cartRepository.save(cart);
 
-        return "카트에 물품이 추가되었습니다.";
+        return "success";
     }
 
     public List<Item> getMyCartList(User user){
-        return itempRepository.findByCart(cartRepository.findByUser(user));
+        return itemRepository.findByCart(cartRepository.findByUser(user));
+    }
+
+    public void removeCart(User user, Item item){
+        Cart cart = cartRepository.findByUser(user);
+        List<Item> items = cart.getItem();
+        items.remove(item);
+        cart.setItem(items);
+        cartRepository.save(cart);
     }
 }

@@ -17,6 +17,9 @@ public class Cart {
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_cart_user"))
     private User user;
 
+    @Transient
+    private int count;
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -30,7 +33,19 @@ public class Cart {
         this.item.add(item);
     }
 
+    public void setCount(){
+        if(item!=null) {
+            this.count = this.item.size();
+        }
+        System.out.println(count);
+    }
+
+    public int getCount() {
+        return count;
+    }
+
     public boolean alreadyContainItemInCart(Item item){
+
         for(Item target : this.item){
             if(item.getId()==target.getId()){
                 return true;
