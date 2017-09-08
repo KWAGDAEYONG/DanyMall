@@ -1,5 +1,6 @@
 package com.example.demo.api;
 
+import com.example.demo.criteria.PageCriteria;
 import com.example.demo.criteria.SearchCriteria;
 import com.example.demo.model.Item;
 import com.example.demo.repository.CartRepository;
@@ -40,10 +41,6 @@ public class ItemApi {
         return item;
     }
 
-    public List<Item> getItemsByCategory(Long id){
-        return itemRepository.findByCategory(categoryRepository.findOne(id));
-    }
-
     public Item save(Item item){
         return itemRepository.save(item);
     }
@@ -59,4 +56,5 @@ public class ItemApi {
     public Long getTotalCount(SearchCriteria searchCriteria){
         return itemRepository.getTotalCount(searchCriteria);
     }
+
 }

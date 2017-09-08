@@ -1,9 +1,11 @@
 package com.example.demo.repository.impl;
 
+import com.example.demo.criteria.PageCriteria;
 import com.example.demo.criteria.SearchCriteria;
 import com.example.demo.model.Item;
 import com.example.demo.model.QItem;
 import com.example.demo.repository.ItemRepositoryQueryDsl;
+import org.h2.store.Page;
 import org.springframework.data.jpa.repository.support.QueryDslRepositorySupport;
 import org.springframework.stereotype.Service;
 
@@ -40,4 +42,5 @@ public class ItemRepositoryImpl extends QueryDslRepositorySupport implements Ite
                 .limit(searchCriteria.getPerPageNum())
                 .fetchCount();
     }
+
 }

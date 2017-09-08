@@ -9,6 +9,15 @@ public class SearchCriteria extends PageCriteria {
     private String style="";
     private String gender="";
     private String category="";
+    private String name="";
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
 
     public void setPrice(String price) {
         this.price = price;
@@ -77,6 +86,10 @@ public class SearchCriteria extends PageCriteria {
 
         if(!"".equals(this.category)&&this.category!=null){
             br.and(qItem.category.part.eq(this.category));
+        }
+
+        if(!"".equals(this.name)&&this.name!=null){
+            br.and(qItem.name.contains(this.name));
         }
         return br;
     }

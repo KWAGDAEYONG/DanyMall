@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import com.example.demo.criteria.PageCriteria;
 import com.example.demo.criteria.SearchCriteria;
 import com.example.demo.model.Item;
 

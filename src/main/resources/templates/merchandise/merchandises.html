@@ -257,17 +257,17 @@
                                     <ul class="pagination">
                                         <li>
                                             {{#prev}}
-                                            <a href="/search?page={{{prevPage}}}&price={{{price}}}&weather={{{weather}}}&style={{{style}}}&gender={{{gender}}}&category={{{category}}}" aria-label="Previous">
+                                            <a href="/search?page={{{prevPage}}}&price={{{price}}}&weather={{{weather}}}&style={{{style}}}&gender={{{gender}}}&category={{{category}}}&name={{{name}}}" aria-label="Previous">
                                                 <span aria-hidden="true">prev</span>
                                             </a>
                                             {{/prev}}
                                         </li>
                                         {{#pageList}}
-                                        <li><a href="/search?page={{{.}}}&price={{{price}}}&weather={{{weather}}}&style={{{style}}}&gender={{{gender}}}&category={{{category}}}">{{.}}</a></li>
+                                        <li><a href="/search?page={{{.}}}&price={{{price}}}&weather={{{weather}}}&style={{{style}}}&gender={{{gender}}}&category={{{category}}}&name={{{name}}}">{{.}}</a></li>
                                         {{/pageList}}
                                         <li>
                                             {{#next}}
-                                            <a href="/search?page={{{nextPage}}}&price={{{price}}}&weather={{{weather}}}&style={{{style}}}&gender={{{gender}}}&category={{{category}}}" aria-label="Next">
+                                            <a href="/search?page={{{nextPage}}}&price={{{price}}}&weather={{{weather}}}&style={{{style}}}&gender={{{gender}}}&category={{{category}}}&name={{{name}}}" aria-label="Next">
                                                 <span aria-hidden="true">next</span>
                                             </a>
                                             {{/next}}

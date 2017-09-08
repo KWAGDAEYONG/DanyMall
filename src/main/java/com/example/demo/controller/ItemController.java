@@ -76,4 +76,5 @@ public class ItemController {
         model.addAttribute("paging",paging);
         return "/merchandise/merchandises";
     }
+
 }
