@@ -29,4 +29,8 @@ public class CategoryApi {
     public void remove(Category category){
         categoryRepository.delete(category);
     }
+
+    public Category getCategory(Long id){
+        return categoryRepository.findOne(id);
+    }
 }

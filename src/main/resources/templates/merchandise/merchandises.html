@@ -40,6 +40,7 @@
     <script src="../../js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
+
 <!--[if lt IE 8]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
@@ -101,6 +102,7 @@
 <section class="pages products-page section-padding-top">
     <div class="container">
         <div class="row">
+            {{#search}}
             <div class="col-xs-12 col-sm-4 col-md-3 text-center">
                 <div class="sidebar left-sidebar">
                     <div class="s-side-text">
@@ -155,15 +157,17 @@
                                 </ul>
                             </div>
                         </div>
-                        <input type="hidden" id="weather" name="weather" value=""></input>
-                        <input type="hidden" id="style" name="style" value=""></input>
-                        <input type="hidden" id="gender" name="gender" value=""></input>
+                        <input type="hidden" id="weather" name="weather" value="">
+                        <input type="hidden" id="style" name="style" value="">
+                        <input type="hidden" id="gender" name="gender" value="">
+                        <input type="hidden" id="hiddenCategory" name="category" value="{{{category}}}">
                         <div class="range-slider text-bg clearfix">
                             <input class="submit floatcenter" type="submit" value="Search">
                         </div>
                     </form>
                 </div>
             </div>
+
             <div class="col-xs-12 col-sm-8 col-md-9">
                 <div class="right-products">
                     <div class="row">
@@ -177,40 +181,6 @@
                                             <li><a data-toggle="tab" href="#list"> <img src="img/products/list-icon.png"
                                                                                         alt="list-icon"/> </a></li>
                                         </ul>
-                                    </li>
-                                    <li class="sort-by l-r-margin">
-                                        <h5>sort by :</h5>
-                                    </li>
-                                    <li class="sort-by">
-                                        <form action="mail.php" method="post">
-                                            <div class="custom-select">
-                                                <select class="form-control">
-                                                    <option> Newest Products</option>
-                                                    <option> men Products</option>
-                                                    <option> women Products</option>
-                                                    <option> popular Products</option>
-                                                    <option> best sell Products</option>
-                                                </select>
-                                            </div>
-                                        </form>
-                                    </li>
-                                    <li class="sort-by l-r-margin">
-                                        <h5>show :</h5>
-                                    </li>
-                                    <li class="sort-by">
-                                        <form action="mail.php" method="post">
-                                            <div class="custom-select">
-                                                <select class="form-control">
-                                                    <option> 09</option>
-                                                    <option> 10</option>
-                                                    <option> 11</option>
-                                                    <option> 12</option>
-                                                    <option> 15</option>
-                                                    <option> 16</option>
-                                                    <option> 18</option>
-                                                </select>
-                                            </div>
-                                        </form>
                                     </li>
                                 </ul>
                             </div>
@@ -283,28 +253,34 @@
                         <div class="col-xs-12">
                             <div class="blog-pagination">
                                 <nav>
+                                    {{#paging}}
                                     <ul class="pagination">
                                         <li>
-                                            <a href="#" aria-label="Previous">
+                                            {{#prev}}
+                                            <a href="/search?page={{{prevPage}}}&price={{{price}}}&weather={{{weather}}}&style={{{style}}}&gender={{{gender}}}&category={{{category}}}" aria-label="Previous">
                                                 <span aria-hidden="true">prev</span>
                                             </a>
+                                            {{/prev}}
                                         </li>
-                                        <li class="active"><a href="#">1</a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">4</a></li>
+                                        {{#pageList}}
+                                        <li><a href="/search?page={{{.}}}&price={{{price}}}&weather={{{weather}}}&style={{{style}}}&gender={{{gender}}}&category={{{category}}}">{{.}}</a></li>
+                                        {{/pageList}}
                                         <li>
-                                            <a href="#" aria-label="Next">
+                                            {{#next}}
+                                            <a href="/search?page={{{nextPage}}}&price={{{price}}}&weather={{{weather}}}&style={{{style}}}&gender={{{gender}}}&category={{{category}}}" aria-label="Next">
                                                 <span aria-hidden="true">next</span>
                                             </a>
+                                            {{/next}}
                                         </li>
                                     </ul>
+                                    {{/paging}}
                                 </nav>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            {{/search}}
         </div>
     </div>
 </section>
@@ -552,163 +528,5 @@
 <script src="../../js/plugins.js"></script>
 <!-- main js -->
 <script src="../../js/main.js"></script>
-
-<script>
-    function setWeather(weather) {
-        var button;
-        switch (weather){
-
-            case "spring":
-                button = document.getElementById("spring");
-                button.style.background= "#ef6644 none repeat scroll 0 0";
-                button.style.color= "#fff";
-
-                document.getElementById("summer").style.background="#fff none repeat scroll 0 0";
-                document.getElementById("summer").style.color="#666"
-
-                document.getElementById("fall").style.background="#fff none repeat scroll 0 0";
-                document.getElementById("fall").style.color="#666"
-
-                document.getElementById("winter").style.background="#fff none repeat scroll 0 0";
-                document.getElementById("winter").style.color="#666"
-
-                document.getElementById("weather").setAttribute("value","spring");
-
-                break;
-            case "summer" :
-                button = document.getElementById("summer");
-                button.style.background= "#ef6644 none repeat scroll 0 0";
-                button.style.color= "#fff";
-
-                document.getElementById("spring").style.background="#fff none repeat scroll 0 0";
-                document.getElementById("spring").style.color="#666"
-
-                document.getElementById("fall").style.background="#fff none repeat scroll 0 0";
-                document.getElementById("fall").style.color="#666"
-
-                document.getElementById("winter").style.background="#fff none repeat scroll 0 0";
-                document.getElementById("winter").style.color="#666"
-
-                document.getElementById("weather").setAttribute("value","summer"); break;
-            case "fall" :
-                button = document.getElementById("fall");
-                button.style.background= "#ef6644 none repeat scroll 0 0";
-                button.style.color= "#fff";
-
-                document.getElementById("summer").style.background="#fff none repeat scroll 0 0";
-                document.getElementById("summer").style.color="#666"
-
-                document.getElementById("spring").style.background="#fff none repeat scroll 0 0";
-                document.getElementById("spring").style.color="#666"
-
-                document.getElementById("winter").style.background="#fff none repeat scroll 0 0";
-                document.getElementById("winter").style.color="#666"
-
-                document.getElementById("weather").setAttribute("value","fall"); break;
-            case "winter" :
-                button = document.getElementById("winter");
-                button.style.background= "#ef6644 none repeat scroll 0 0";
-                button.style.color= "#fff";
-
-                document.getElementById("summer").style.background="#fff none repeat scroll 0 0";
-                document.getElementById("summer").style.color="#666"
-
-                document.getElementById("fall").style.background="#fff none repeat scroll 0 0";
-                document.getElementById("fall").style.color="#666"
-
-                document.getElementById("spring").style.background="#fff none repeat scroll 0 0";
-                document.getElementById("spring").style.color="#666"
-
-                document.getElementById("weather").setAttribute("value","winter"); break;
-        }
-    }
-    function setStyle(style) {
-        var button;
-        switch (style){
-            case "casual" :
-                button = document.getElementById("casual");
-                button.style.background= "#ef6644 none repeat scroll 0 0";
-                button.style.color= "#fff";
-
-                document.getElementById("suit").style.background="#fff none repeat scroll 0 0";
-                document.getElementById("suit").style.color="#666"
-
-                document.getElementById("unique").style.background="#fff none repeat scroll 0 0";
-                document.getElementById("unique").style.color="#666"
-
-                document.getElementById("colorful").style.background="#fff none repeat scroll 0 0";
-                document.getElementById("colorful").style.color="#666"
-
-                document.getElementById("style").setAttribute("value","casual"); break;
-            case "suit" :
-                button = document.getElementById("suit");
-                button.style.background= "#ef6644 none repeat scroll 0 0";
-                button.style.color= "#fff";
-
-                document.getElementById("casual").style.background="#fff none repeat scroll 0 0";
-                document.getElementById("casual").style.color="#666"
-
-                document.getElementById("unique").style.background="#fff none repeat scroll 0 0";
-                document.getElementById("unique").style.color="#666"
-
-                document.getElementById("colorful").style.background="#fff none repeat scroll 0 0";
-                document.getElementById("colorful").style.color="#666"
-
-                document.getElementById("style").setAttribute("value","suit"); break;
-            case "unique" :
-                button = document.getElementById("unique");
-                button.style.background= "#ef6644 none repeat scroll 0 0";
-                button.style.color= "#fff";
-
-                document.getElementById("suit").style.background="#fff none repeat scroll 0 0";
-                document.getElementById("suit").style.color="#666"
-
-                document.getElementById("casual").style.background="#fff none repeat scroll 0 0";
-                document.getElementById("casual").style.color="#666"
-
-                document.getElementById("colorful").style.background="#fff none repeat scroll 0 0";
-                document.getElementById("colorful").style.color="#666"
-
-                document.getElementById("style").setAttribute("value","unique"); break;
-            case "colorful" :
-                button = document.getElementById("colorful");
-                button.style.background= "#ef6644 none repeat scroll 0 0";
-                button.style.color= "#fff";
-
-                document.getElementById("suit").style.background="#fff none repeat scroll 0 0";
-                document.getElementById("suit").style.color="#666"
-
-                document.getElementById("unique").style.background="#fff none repeat scroll 0 0";
-                document.getElementById("unique").style.color="#666"
-
-                document.getElementById("casual").style.background="#fff none repeat scroll 0 0";
-                document.getElementById("casual").style.color="#666"
-
-                document.getElementById("style").setAttribute("value","colorful"); break;
-        }
-    }
-    function setGender(gender) {
-        var button;
-        if(gender=="male"){
-            button = document.getElementById("male");
-            button.style.background= "#ef6644 none repeat scroll 0 0";
-            button.style.color= "#fff";
-
-            document.getElementById("female").style.background="#fff none repeat scroll 0 0";
-            document.getElementById("female").style.color="#666"
-
-            document.getElementById("gender").setAttribute("value","male");
-        }else{
-            button = document.getElementById("female");
-            button.style.background= "#ef6644 none repeat scroll 0 0";
-            button.style.color= "#fff";
-
-            document.getElementById("male").style.background="#fff none repeat scroll 0 0";
-            document.getElementById("male").style.color="#666"
-
-            document.getElementById("gender").setAttribute("value","female");
-        }
-    }
-</script>
 </body>
 </html>

@@ -32,9 +32,6 @@ public class HomeController {
         commonApi.setCommonModel(httpSession,model);
         model.addAttribute("item", itemApi.findAll());
         List<Item> dd =itemApi.getNewArrivals();
-        for(Item item : dd){
-            System.out.println(item.getId());
-        }
         model.addAttribute("newArrivals",dd);
         return "/index";
     }

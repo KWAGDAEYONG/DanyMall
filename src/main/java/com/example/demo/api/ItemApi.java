@@ -1,5 +1,6 @@
 package com.example.demo.api;
 
+import com.example.demo.criteria.SearchCriteria;
 import com.example.demo.model.Item;
 import com.example.demo.repository.CartRepository;
 import com.example.demo.repository.CategoryRepository;
@@ -51,7 +52,11 @@ public class ItemApi {
         return itemRepository.getNewArrivals();
     }
 
-    public List<Item> search(String price, String weather, String style, String gender){
-        return itemRepository.search(price, weather, style, gender);
+    public List<Item> search(SearchCriteria searchCriteria){
+        return itemRepository.search(searchCriteria);
+    }
+
+    public Long getTotalCount(SearchCriteria searchCriteria){
+        return itemRepository.getTotalCount(searchCriteria);
     }
 }

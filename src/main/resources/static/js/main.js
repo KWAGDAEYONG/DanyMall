@@ -1,3 +1,161 @@
+function setWeather(weather) {
+    var button;
+    switch (weather){
+
+        case "spring":
+            button = document.getElementById("spring");
+            button.style.background= "#ef6644 none repeat scroll 0 0";
+            button.style.color= "#fff";
+
+            document.getElementById("summer").style.background="#fff none repeat scroll 0 0";
+            document.getElementById("summer").style.color="#666"
+
+            document.getElementById("fall").style.background="#fff none repeat scroll 0 0";
+            document.getElementById("fall").style.color="#666"
+
+            document.getElementById("winter").style.background="#fff none repeat scroll 0 0";
+            document.getElementById("winter").style.color="#666"
+
+            document.getElementById("weather").setAttribute("value","spring");
+
+            break;
+        case "summer" :
+            button = document.getElementById("summer");
+            button.style.background= "#ef6644 none repeat scroll 0 0";
+            button.style.color= "#fff";
+
+            document.getElementById("spring").style.background="#fff none repeat scroll 0 0";
+            document.getElementById("spring").style.color="#666"
+
+            document.getElementById("fall").style.background="#fff none repeat scroll 0 0";
+            document.getElementById("fall").style.color="#666"
+
+            document.getElementById("winter").style.background="#fff none repeat scroll 0 0";
+            document.getElementById("winter").style.color="#666"
+
+            document.getElementById("weather").setAttribute("value","summer"); break;
+        case "fall" :
+            button = document.getElementById("fall");
+            button.style.background= "#ef6644 none repeat scroll 0 0";
+            button.style.color= "#fff";
+
+            document.getElementById("summer").style.background="#fff none repeat scroll 0 0";
+            document.getElementById("summer").style.color="#666"
+
+            document.getElementById("spring").style.background="#fff none repeat scroll 0 0";
+            document.getElementById("spring").style.color="#666"
+
+            document.getElementById("winter").style.background="#fff none repeat scroll 0 0";
+            document.getElementById("winter").style.color="#666"
+
+            document.getElementById("weather").setAttribute("value","fall"); break;
+        case "winter" :
+            button = document.getElementById("winter");
+            button.style.background= "#ef6644 none repeat scroll 0 0";
+            button.style.color= "#fff";
+
+            document.getElementById("summer").style.background="#fff none repeat scroll 0 0";
+            document.getElementById("summer").style.color="#666"
+
+            document.getElementById("fall").style.background="#fff none repeat scroll 0 0";
+            document.getElementById("fall").style.color="#666"
+
+            document.getElementById("spring").style.background="#fff none repeat scroll 0 0";
+            document.getElementById("spring").style.color="#666"
+
+            document.getElementById("weather").setAttribute("value","winter"); break;
+    }
+}
+function setStyle(style) {
+    var button;
+    switch (style){
+        case "casual" :
+            button = document.getElementById("casual");
+            button.style.background= "#ef6644 none repeat scroll 0 0";
+            button.style.color= "#fff";
+
+            document.getElementById("suit").style.background="#fff none repeat scroll 0 0";
+            document.getElementById("suit").style.color="#666"
+
+            document.getElementById("unique").style.background="#fff none repeat scroll 0 0";
+            document.getElementById("unique").style.color="#666"
+
+            document.getElementById("colorful").style.background="#fff none repeat scroll 0 0";
+            document.getElementById("colorful").style.color="#666"
+
+            document.getElementById("style").setAttribute("value","casual"); break;
+        case "suit" :
+            button = document.getElementById("suit");
+            button.style.background= "#ef6644 none repeat scroll 0 0";
+            button.style.color= "#fff";
+
+            document.getElementById("casual").style.background="#fff none repeat scroll 0 0";
+            document.getElementById("casual").style.color="#666"
+
+            document.getElementById("unique").style.background="#fff none repeat scroll 0 0";
+            document.getElementById("unique").style.color="#666"
+
+            document.getElementById("colorful").style.background="#fff none repeat scroll 0 0";
+            document.getElementById("colorful").style.color="#666"
+
+            document.getElementById("style").setAttribute("value","suit"); break;
+        case "unique" :
+            button = document.getElementById("unique");
+            button.style.background= "#ef6644 none repeat scroll 0 0";
+            button.style.color= "#fff";
+
+            document.getElementById("suit").style.background="#fff none repeat scroll 0 0";
+            document.getElementById("suit").style.color="#666"
+
+            document.getElementById("casual").style.background="#fff none repeat scroll 0 0";
+            document.getElementById("casual").style.color="#666"
+
+            document.getElementById("colorful").style.background="#fff none repeat scroll 0 0";
+            document.getElementById("colorful").style.color="#666"
+
+            document.getElementById("style").setAttribute("value","unique"); break;
+        case "colorful" :
+            button = document.getElementById("colorful");
+            button.style.background= "#ef6644 none repeat scroll 0 0";
+            button.style.color= "#fff";
+
+            document.getElementById("suit").style.background="#fff none repeat scroll 0 0";
+            document.getElementById("suit").style.color="#666"
+
+            document.getElementById("unique").style.background="#fff none repeat scroll 0 0";
+            document.getElementById("unique").style.color="#666"
+
+            document.getElementById("casual").style.background="#fff none repeat scroll 0 0";
+            document.getElementById("casual").style.color="#666"
+
+            document.getElementById("style").setAttribute("value","colorful"); break;
+    }
+}
+function setGender(gender) {
+    var button;
+    if(gender=="male"){
+        button = document.getElementById("male");
+        button.style.background= "#ef6644 none repeat scroll 0 0";
+        button.style.color= "#fff";
+
+        document.getElementById("female").style.background="#fff none repeat scroll 0 0";
+        document.getElementById("female").style.color="#666"
+
+        document.getElementById("gender").setAttribute("value","male");
+    }else{
+        button = document.getElementById("female");
+        button.style.background= "#ef6644 none repeat scroll 0 0";
+        button.style.color= "#fff";
+
+        document.getElementById("male").style.background="#fff none repeat scroll 0 0";
+        document.getElementById("male").style.color="#666"
+
+        document.getElementById("gender").setAttribute("value","female");
+    }
+}
+
+
+
 (function ($) {
  "use strict";
 
