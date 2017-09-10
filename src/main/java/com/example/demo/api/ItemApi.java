@@ -50,7 +50,13 @@ public class ItemApi {
     }
 
     public List<Item> search(SearchCriteria searchCriteria){
-        return itemRepository.search(searchCriteria);
+        List<Item> items = itemRepository.search(searchCriteria);
+        for(Item item : items){
+            item.setReviewStar();
+            item.setReviewCount();
+            item.setAverage();
+        }
+        return items;
     }
 
     public Long getTotalCount(SearchCriteria searchCriteria){

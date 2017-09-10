@@ -235,6 +235,7 @@
                         <h5>{{reviewCount}} review for Accumsan Elit</h5>
                         <div class="autohr-text">
                             {{#review}}
+
                             <div class="author-des">
                                 <h4>{{writer.userId}}</h4>
                                 <span class="verygood">{{content}}</span>
@@ -293,27 +294,31 @@
                                 </ul>
                             </div>
                         </div>
+                        {{/isLogin}}
                         <div class="custom-input">
                             <form class="review-form" action="/write/{{id}}" method="post">
                                 <div class="row">
                                     <div class="col-sm-8">
                                         <div class="review-mess">
+                                            {{#isLogin}}
                                             <textarea name="content" placeholder="Your Review" rows="5"></textarea>
+                                            {{/isLogin}}
+                                            {{^isLogin}}
+                                            <textarea name="content" readonly="readonly" placeholder="리뷰를 작성하시려면 먼저 로그인을 해주세요." rows="5"></textarea>
+                                            {{/isLogin}}
                                         </div>
                                     </div>
+                                    {{#isLogin}}
                                     <div class="col-sm-6">
                                         <div class="submit-text">
                                             <button type="submit">submit review</button>
                                         </div>
                                     </div>
+                                    {{/isLogin}}
                                 </div>
                                 <input id="scoreHidden" type="hidden" name="score" value="">
                             </form>
                         </div>
-                        {{/isLogin}}
-                        {{^isLogin}}
-                        리뷰를 작성하시려면 먼저 로그인을 해주세요.
-                        {{/isLogin}}
                     </div>
                 </div>
             </div>
