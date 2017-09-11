@@ -71,6 +71,7 @@ public class CartController {
 
     @GetMapping("/removeCart/{id}")
     public String removeCart(@PathVariable Long id, HttpSession httpSession, Model model){
+        commonApi.setCommonModel(httpSession,model);
         User user = (User)httpSession.getAttribute("loginUser");
         cartApi.removeCart(user,itemApi.findOne(id));
         return "redirect:/myCart/"+user.getId();

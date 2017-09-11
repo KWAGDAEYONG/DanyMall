@@ -51,24 +51,6 @@ public class Item {
     @Transient
     private List<String> sizeList = new ArrayList<String>();
 
-    public void setReviewCount() {
-        this.reviewCount = this.review.size();
-    }
-
-    public void setAverage() {
-        int totalCount = reviewCount;
-        int totalScore = 0;
-        int result = 0;
-        for(Review review: this.review){
-            totalScore += review.getScore();
-        }
-        if(totalCount!=0) {
-            result = totalScore / totalCount;
-        }
-        for(int i = 0; i<result; i++){
-            this.average.add(1);
-        }
-    }
 
     public String getName() {
         return name;
@@ -126,15 +108,14 @@ public class Item {
         this.price = price;
     }
 
-    public void setColorList() {
+    public void setColorAndSize(){
+        //색상
         this.colorList.clear();
         String colors[] = this.color.split(",");
         for(String c:colors){
             this.colorList.add(c);
         }
-    }
-
-    public void setSizeList() {
+        //사이즈
         this.sizeList.clear();
         String sizes[] = this.size.split(",");
         for(String s:sizes){
@@ -142,11 +123,30 @@ public class Item {
         }
     }
 
-    public void setReviewStar(){
+    public void setReviewValue(){
+        //별점
         for(Review review:this.review){
             review.setStar();
         }
+
+        //리뷰개수
+       this.reviewCount = this.review.size();
+
+        //평점
+        int totalCount = reviewCount;
+        int totalScore = 0;
+        int result = 0;
+        for(Review review: this.review){
+            totalScore += review.getScore();
+        }
+        if(totalCount!=0) {
+            result = totalScore / totalCount;
+        }
+        for(int i = 0; i<result; i++){
+            this.average.add(1);
+        }
     }
+
 
     public Long getId() {
         return id;

@@ -31,8 +31,7 @@ public class HomeController {
     public String home(HttpSession httpSession, Model model){
         commonApi.setCommonModel(httpSession,model);
         model.addAttribute("item", itemApi.findAll());
-        List<Item> dd =itemApi.getNewArrivals();
-        model.addAttribute("newArrivals",dd);
+        model.addAttribute("newArrivals",itemApi.getNewArrivals());
         return "/index";
     }
 

@@ -33,11 +33,10 @@ public class ItemApi {
 
     public Item getDetail(Long id){
         Item item = itemRepository.findOne(id);
-        item.setReviewStar();
-        item.setColorList();
-        item.setSizeList();
-        item.setReviewCount();
-        item.setAverage();
+
+        item.setColorAndSize();
+        item.setReviewValue();
+
         return item;
     }
 
@@ -52,9 +51,7 @@ public class ItemApi {
     public List<Item> search(SearchCriteria searchCriteria){
         List<Item> items = itemRepository.search(searchCriteria);
         for(Item item : items){
-            item.setReviewStar();
-            item.setReviewCount();
-            item.setAverage();
+            item.setReviewValue();
         }
         return items;
     }

@@ -77,6 +77,7 @@
 
 
 //Provide the plugin settings
+/*
 $("#countdown-1,#countdown-2").countdown({
 	//The countdown end date
 	date: "25 jun 2017 01:00:00",
@@ -88,4 +89,4 @@ $("#countdown-1,#countdown-2").countdown({
 	function() {
 	// This will run when the countdown ends
 	alert("Happy New Year!");
-});
+});*/

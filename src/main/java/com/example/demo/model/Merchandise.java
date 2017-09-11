@@ -84,11 +84,14 @@ public class Merchandise implements Comparable<Merchandise> {
         this.amount = amount;
     }
 
-    public boolean release(){
+    public boolean release(int qty){
         if(this.amount==0){
             return false;
         }
-        this.amount = this.amount-1;
+        if(this.amount < qty){
+            return false;
+        }
+        this.amount = this.amount-qty;
         return true;
     }
 
@@ -96,8 +99,8 @@ public class Merchandise implements Comparable<Merchandise> {
         return amount;
     }
 
-    public void updateSalesVolume(){
-        this.salesVolume++;
+    public void updateSalesVolume(int qty){
+        this.salesVolume = this.salesVolume+qty;
     }
 
     @Override

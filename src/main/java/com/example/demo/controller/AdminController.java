@@ -5,7 +5,6 @@ import com.example.demo.model.Category;
 import com.example.demo.model.Item;
 import com.example.demo.model.Merchandise;
 import com.example.demo.model.Sold;
-import com.example.demo.repository.MerchandiseRepository;
 import com.example.demo.staticUtility.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

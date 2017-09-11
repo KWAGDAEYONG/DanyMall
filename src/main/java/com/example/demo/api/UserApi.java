@@ -40,24 +40,20 @@ public class UserApi {
     }
 
     public String login(String userId, String password, HttpSession httpSession){
-        String result = "";
         User dbUser = userRepository.findByUserId(userId);
         if(dbUser==null){
-            result = "아이디가 없습니다.";
-            return result;
+            return "아이디가 없습니다.";
         }
 
         if(!dbUser.isSamePassword(password)){
-            result = "비밀번호가 틀립니다";
-            return result;
+            return "비밀번호가 틀립니다";
         }
 
         if(SessionUtil.isLogin(httpSession)){
             httpSession.removeAttribute("loginUser");
         }
         httpSession.setAttribute("loginUser",dbUser);
-        result = "success";
-        return result;
+        return "success";
     }
     public void logout(HttpSession httpSession){
         httpSession.removeAttribute("loginUser");

@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.api.CommonApi;
 import com.example.demo.api.ItemApi;
 import com.example.demo.api.MerchandiseApi;
+import com.example.demo.model.Merchandise;
 import com.example.demo.model.Sold;
 import com.example.demo.staticUtility.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +37,15 @@ public class MerchandiseController {
             redirectAttributes.addAttribute("buyResult","칼라와 사이즈를 선택해주세요");
             return "redirect:/detail/"+id;
         }
-        model.addAttribute("buyResult",merchandiseApi.buy(id, color, size, httpSession, qty));
+        Merchandise target = merchandiseApi.getBuyTarget(id, color,size);
 
-        return "/merchandise/buyResult";
+        if (target == null  || !target.release(qty)) {
+            model.addAttribute("buyFail","재고가 없습니다.");
+            return "/merchandise/order-complete";
+        }
+
+        model.addAttribute("sold",merchandiseApi.buy(target, httpSession, qty));
+
+        return "/merchandise/order-complete";
     }
 }

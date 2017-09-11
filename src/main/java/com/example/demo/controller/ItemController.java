@@ -32,37 +32,14 @@ public class ItemController {
     CategoryApi categoryApi;
 
     @GetMapping("/detail/{id}")
-    public String detail(@PathVariable Long id, Model model, HttpSession httpSession,String buyResult){
+    public String detail(@PathVariable Long id, Model model, HttpSession httpSession, String buyResult){
         model.addAttribute("item",itemApi.getDetail(id));
-        if(!"".equals(buyResult)) {
-            model.addAttribute("buyResult", buyResult);
+        if(!"".equals(buyResult)){
+            model.addAttribute("buyResult",buyResult);
         }
         commonApi.setCommonModel(httpSession,model);
         return "/merchandise/detail";
     }
-
-    /*@GetMapping("/{id}")
-    public String category(@PathVariable Long id, Model model, HttpSession httpSession, PageCriteria pageCri){
-        commonApi.setCommonModel(httpSession, model);
-
-        SearchCriteria searchCriteria = new SearchCriteria();
-
-        //카테고리검색을 했다면,
-        if(id!=2290) {
-            searchCriteria.setCategory(categoryApi.getCategory(id).getPart());
-        }
-
-        List<Item> items = itemApi.search(searchCriteria);
-        model.addAttribute("categoryItem",items);
-
-        model.addAttribute("hiddenCategory", categoryApi.getCategory(id));
-
-        Paging paging = new Paging();
-        paging.setCri(pageCri);
-        paging.setTotalCount(toIntExact(itemApi.getTotalCount(searchCriteria)));
-        model.addAttribute("paging",paging);
-        return "/merchandise/merchandises";
-    }*/
 
     @GetMapping("/search")
     public String searchItem(SearchCriteria searchCriteria, HttpSession httpSession, Model model, PageCriteria pageCri){
@@ -70,10 +47,7 @@ public class ItemController {
 
         model.addAttribute("categoryItem",itemApi.search(searchCriteria));
         model.addAttribute("search", searchCriteria);
-        Paging paging = new Paging();
-        paging.setCri(pageCri);
-        paging.setTotalCount(toIntExact(itemApi.getTotalCount(searchCriteria)));
-        model.addAttribute("paging",paging);
+        model.addAttribute("paging",new Paging(pageCri,itemApi.getTotalCount(searchCriteria)));
         return "/merchandise/merchandises";
     }
 

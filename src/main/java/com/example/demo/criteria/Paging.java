@@ -3,6 +3,8 @@ package com.example.demo.criteria;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Math.toIntExact;
+
 public class Paging {
     private PageCriteria cri;
     private int totalCount;
@@ -16,20 +18,16 @@ public class Paging {
     private SearchCriteria searchCri;
     private int displayPageNum = 4;
 
-    public void setCri(PageCriteria cri) {
+    public Paging(PageCriteria cri, Long totalCount){
         this.cri = cri;
+        this.totalCount = toIntExact(totalCount);
+
+        calcData();
     }
 
     public void setSearchCri(SearchCriteria searchCri) {
         this.searchCri = searchCri;
     }
-
-    public void setTotalCount(int totalCount) {
-        this.totalCount = totalCount;
-
-        calcData();
-    }
-
 
     private void calcData(){
         endPage = (int)(Math.ceil(cri.getPage()/(double)displayPageNum)*displayPageNum);

@@ -1,5 +1,6 @@
 package com.example.demo.api;
 
+import com.example.demo.model.Item;
 import com.example.demo.model.Merchandise;
 import com.example.demo.model.Sold;
 import com.example.demo.model.User;
@@ -10,7 +11,9 @@ import com.example.demo.staticUtility.DateUtil;
 import com.example.demo.staticUtility.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
+import javax.jws.WebParam;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -26,38 +29,28 @@ public class MerchandiseApi {
     @Autowired
     SoldRepository soldRepository;
 
-    public String buy(Long id, String color, String size, HttpSession httpSession, int qty) {
-        if (!SessionUtil.isLogin(httpSession)) {
-            return "로그인 정보가 끊겼습니다. 다시 로그인해주세요.";
-        }
-        Merchandise target = merchandiseRepository.findByItemAndColorAndSize(itemRepository.findOne(id), color, size);
-        if (target==null||target.getAmount()<qty||!target.release()) {
-            return "재고가 없습니다.";
-        }
+    public Sold  buy(Merchandise target, HttpSession httpSession, int qty) {
         User loginUser = (User) httpSession.getAttribute("loginUser");
+        Sold sold = new Sold(loginUser,target,DateUtil.getTodayDate(),qty);
+        target.release(qty);
+        target.updateSalesVolume(qty);
 
-        for(int i = 0; i<qty; i++) {
-            Sold sold = new Sold();
-            target.release();
-            sold.setBuyer(loginUser);
-            sold.setSoldDate(DateUtil.getTodayDate());
-            sold.setSoldMerchandise(target);
-            target.updateSalesVolume();
-            soldRepository.save(sold);
-        }
-
-        return "정상적으로 구매신청이 완료되었습니다";
+        return soldRepository.save(sold);
     }
 
-    public Merchandise addMerchandise(Merchandise merchandise){
+    public Merchandise addMerchandise(Merchandise merchandise) {
         return merchandiseRepository.save(merchandise);
     }
 
-    public List<Merchandise> getMerchandiseList(){
+    public Merchandise getBuyTarget(Long id, String color, String size){
+        return merchandiseRepository.findByItemAndColorAndSize(itemRepository.findOne(id), color, size);
+    }
+
+    public List<Merchandise> getMerchandiseList() {
         return merchandiseRepository.findAll();
     }
 
-    public Merchandise getMerchandise(Long id){
+    public Merchandise getMerchandise(Long id) {
         return merchandiseRepository.findOne(id);
     }
 
