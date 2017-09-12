@@ -1,10 +1,9 @@
 package com.example.demo.controller;
 
 import com.example.demo.api.*;
-import com.example.demo.model.Category;
-import com.example.demo.model.Item;
-import com.example.demo.model.Merchandise;
-import com.example.demo.model.Sold;
+import com.example.demo.model.*;
+import com.example.demo.security.GoogleUser;
+import com.example.demo.security.config.SessionConstants;
 import com.example.demo.staticUtility.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,10 +44,28 @@ public class AdminController {
     @Autowired
     UserApi userApi;
 
+    @Autowired
+    AdminApi adminApi;
 
-    @GetMapping("/")
-    public String adminIndex() {
-        return "/admin/index";
+    private HttpSession httpSession;
+
+    public AdminController(HttpSession httpSession){
+        this.httpSession = httpSession;
+    }
+
+
+    @GetMapping("/index")
+    public String adminIndex(Model model) {
+        GoogleUser user = (GoogleUser)httpSession.getAttribute(SessionConstants.LOGIN_USER);
+
+        List<Admin> adminList = adminApi.getAdminList();
+        for(int i = 0; i<adminList.size(); i++){
+            if(adminList.get(i).isAdmin(user.getName(), user.getEmail())){
+                return "/admin/index";
+            }
+        }
+        model.addAttribute("adminLoginFail","본 계정은 관리자가 아닙니다.");
+        return "/error";
     }
 
     @GetMapping("/addItem")

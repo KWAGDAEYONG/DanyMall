@@ -1,10 +1,11 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class Cart {
+public class Cart implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
