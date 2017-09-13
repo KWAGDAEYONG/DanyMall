@@ -82,7 +82,7 @@ public class AdminController {
         Item saveItem = itemApi.save(item);
         Long imgNum = saveItem.getId();
         upLoad(file, imgNum);
-        saveItem.setImg('"' + "D:danymallimg\\" + imgNum + ".PNG" + '"');
+        saveItem.setImg('"' + "/home/ubunut/img/" + imgNum + ".PNG" + '"');
         itemApi.save(saveItem);
 
         //상품 추가
@@ -282,7 +282,7 @@ public class AdminController {
         try {
             byte[] bytes = file.getBytes();
             String fileName = Long.toString(imgNum) + ".PNG";
-            Path path = Paths.get("D://danymallimg//" + fileName);
+            Path path = Paths.get("/home/ubuntu/img/" + fileName);
             Files.write(path, bytes);
         } catch (Exception e) {
             e.printStackTrace();
