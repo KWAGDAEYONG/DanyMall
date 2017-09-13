@@ -38,7 +38,6 @@ public class Cart implements Serializable {
         if(item!=null) {
             this.count = this.item.size();
         }
-        System.out.println(count);
     }
 
     public int getCount() {
