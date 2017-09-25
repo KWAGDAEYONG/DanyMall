@@ -31,11 +31,17 @@ public class OauthConfig {
 
     @Bean
     public Filter ssoFilter(){
+        System.out.println("1");
         OAuth2ClientAuthenticationProcessingFilter oauth2Filter = new OAuth2ClientAuthenticationProcessingFilter("/admin");
+        System.out.println("2");
         OAuth2RestTemplate oAuth2RestTemplate = new OAuth2RestTemplate(googleClient(), oAuth2ClientContext);
+        System.out.println("3");
         oauth2Filter.setRestTemplate(oAuth2RestTemplate);
+        System.out.println("4");
         oauth2Filter.setTokenServices(new UserInfoTokenServices(googleResource().getUserInfoUri(), googleClient().getClientId()));
+        System.out.println("5");
         oauth2Filter.setAuthenticationSuccessHandler(authenticationSuccessHandler);
+        System.out.println("6");
         return oauth2Filter;
 
     }
