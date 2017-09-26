@@ -23,11 +23,14 @@ public class OauthConfig {
 
     private final OAuth2ClientContext oAuth2ClientContext;
     private final GoogleAuthenticationSuccessHandler authenticationSuccessHandler;
+    private final OAuth2ClientContextFilter oAuth2ClientContextFilter;
 
-    public OauthConfig(OAuth2ClientContext oAuth2ClientContext, GoogleAuthenticationSuccessHandler authenticationSuccessHandler){
+    public OauthConfig(OAuth2ClientContext oAuth2ClientContext, GoogleAuthenticationSuccessHandler authenticationSuccessHandler, OAuth2ClientContextFilter oAuth2ClientContextFilter){
         this.oAuth2ClientContext = oAuth2ClientContext;
         this.authenticationSuccessHandler = authenticationSuccessHandler;
+        this.oAuth2ClientContextFilter = oAuth2ClientContextFilter;
     }
+
 
     @Bean
     public Filter ssoFilter(){
