@@ -23,12 +23,11 @@ public class OauthConfig {
 
     private final OAuth2ClientContext oAuth2ClientContext;
     private final GoogleAuthenticationSuccessHandler authenticationSuccessHandler;
-    private final OAuth2ClientContextFilter oAuth2ClientContextFilter;
 
-    public OauthConfig(OAuth2ClientContext oAuth2ClientContext, GoogleAuthenticationSuccessHandler authenticationSuccessHandler, OAuth2ClientContextFilter oAuth2ClientContextFilter){
+    public OauthConfig(OAuth2ClientContext oAuth2ClientContext, GoogleAuthenticationSuccessHandler authenticationSuccessHandler){
         this.oAuth2ClientContext = oAuth2ClientContext;
         this.authenticationSuccessHandler = authenticationSuccessHandler;
-        this.oAuth2ClientContextFilter = oAuth2ClientContextFilter;
+
     }
 
 
@@ -59,7 +58,6 @@ public class OauthConfig {
     public FilterRegistrationBean oauth2ClientFilterRegistration(OAuth2ClientContextFilter filter){
         FilterRegistrationBean registration = new FilterRegistrationBean();
         registration.setFilter(filter);
-        registration.setEnabled(false);
         registration.setOrder(-100);
         return registration;
     }
